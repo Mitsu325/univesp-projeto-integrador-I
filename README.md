@@ -14,3 +14,13 @@ No caso do banco ser um contianer será necessário executar o seguinte comando 
 ```
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <nome_do_seu_contêiner_mysql>
 ```
+
+## Comandos básicos
+Criar migration:
+```
+python manage.py makemigrations
+```
+Aplicar migration ao banco de dados:
+```
+python manage.py migrate
+```
