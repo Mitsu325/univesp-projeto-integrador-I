@@ -1,0 +1,272 @@
+[
+  {
+    "model": "resumes.state",
+    "pk": 1,
+    "fields": {
+      "name": "Rondônia",
+      "abbreviation": "RO",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 2,
+    "fields": {
+      "name": "Acre",
+      "abbreviation": "AC",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 3,
+    "fields": {
+      "name": "Amazonas",
+      "abbreviation": "AM",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 4,
+    "fields": {
+      "name": "Roraima",
+      "abbreviation": "RR",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 5,
+    "fields": {
+      "name": "Pará",
+      "abbreviation": "PA",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 6,
+    "fields": {
+      "name": "Amapá",
+      "abbreviation": "AP",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 7,
+    "fields": {
+      "name": "Tocantins",
+      "abbreviation": "TO",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 8,
+    "fields": {
+      "name": "Maranhão",
+      "abbreviation": "MA",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 9,
+    "fields": {
+      "name": "Piauí",
+      "abbreviation": "PI",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 10,
+    "fields": {
+      "name": "Ceará",
+      "abbreviation": "CE",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 11,
+    "fields": {
+      "name": "Rio Grande do Norte",
+      "abbreviation": "RN",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 12,
+    "fields": {
+      "name": "Paraíba",
+      "abbreviation": "PB",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 13,
+    "fields": {
+      "name": "Pernambuco",
+      "abbreviation": "PE",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 14,
+    "fields": {
+      "name": "Alagoas",
+      "abbreviation": "AL",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 15,
+    "fields": {
+      "name": "Sergipe",
+      "abbreviation": "SE",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 16,
+    "fields": {
+      "name": "Bahia",
+      "abbreviation": "BA",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 17,
+    "fields": {
+      "name": "Minas Gerais",
+      "abbreviation": "MG",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 18,
+    "fields": {
+      "name": "Espírito Santo",
+      "abbreviation": "ES",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 19,
+    "fields": {
+      "name": "Rio de Janeiro",
+      "abbreviation": "RJ",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 20,
+    "fields": {
+      "name": "São Paulo",
+      "abbreviation": "SP",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 21,
+    "fields": {
+      "name": "Paraná",
+      "abbreviation": "PR",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 22,
+    "fields": {
+      "name": "Santa Catarina",
+      "abbreviation": "SC",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 23,
+    "fields": {
+      "name": "Rio Grande do Sul",
+      "abbreviation": "RS",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 24,
+    "fields": {
+      "name": "Mato Grosso do Sul",
+      "abbreviation": "MS",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 25,
+    "fields": {
+      "name": "Mato Grosso",
+      "abbreviation": "MT",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 26,
+    "fields": {
+      "name": "Goiás",
+      "abbreviation": "GO",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.state",
+    "pk": 27,
+    "fields": {
+      "name": "Distrito Federal",
+      "abbreviation": "DF",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  }
+]
