@@ -10,4 +10,5 @@ load:
 	# /usr/bin/python3 manage.py loaddata state_fixture.json
 	# /usr/bin/python3 manage.py loaddata city_fixture.json
 	# /usr/bin/python3 manage.py loaddata languages_fixture.json
-	/usr/bin/python3 manage.py loaddata tech_skill_fixture.json
+	# /usr/bin/python3 manage.py loaddata tech_skill_fixture.json
+	/usr/bin/python3 manage.py loaddata course_fixture.json
