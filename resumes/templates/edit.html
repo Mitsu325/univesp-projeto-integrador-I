@@ -5,9 +5,205 @@
 {% endblock %}
 
 {% block description %}
-  Cadastrar currículo
+  Cadastro de currículo
 {% endblock %}
 
 {% block content %}
-  <h1 class="card-title mb-4">Editar currículo</h1>
+  <h1 class="card-title mb-4">Cadastro de currículo</h1>
+  <form action="" class="row">
+    <h2 class="card-sub-title mb-3">Informações básicas</h2>
+    <div class="col-md-6 col-12 mb-4">
+      <label for="name" class="form-label">Nome completo *</label>
+      <input type="text" class="form-control" id="name" placeholder="Digite o nome completo" value="João" required />
+    </div>
+    <div class="col-md-6 col-12 mb-4">
+      <label for="email" class="form-label">E-mail *</label>
+      <input type="email" class="form-control" id="email" placeholder="Digite o e-mail" value="joao@mail.com" required />
+    </div>
+    <div class="col-md-6 col-12 mb-4">
+      <label for="socialName" class="form-label">Nome social</label>
+      <input type="text" class="form-control" id="socialName" placeholder="Digite o nome social" />
+    </div>
+    <div class="col-md-6 col-12 mb-4">
+      <label for="cellphone" class="form-label">Telefone</label>
+      <input type="text" class="form-control" id="cellphone" placeholder="Digite o seu número de contato" />
+    </div>
+    <div class="col-lg-3 col-md-6 col-12 mb-4">
+      <label for="birthday" class="form-label">Data de nascimento *</label>
+      <input type="date" class="form-control" id="birthday" placeholder="Data de nascimento" required />
+    </div>
+    <div class="col-lg-3 col-md-6 col-12 mb-4">
+      <label for="gender" class="form-label">Gênero *</label>
+      <select id="gender" class="form-select" aria-label="Escolha o gênero" required>
+        <option selected disabled>Escolha o gênero</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <div class="col-md-6 col-12 mb-4">
+      <label for="linkedin" class="form-label">Linkedin</label>
+      <input type="text" class="form-control" id="linkedin" placeholder="Digite o seu linkedin" />
+    </div>
+    <div class="col-lg-3 col-md-6 col-12 mb-4">
+      <label for="state" class="form-label">Estado *</label>
+      <select id="state" class="form-select" aria-label="Escolha o estado" required>
+        <option selected disabled>Escolha o estado</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <div class="col-lg-3 col-md-6 col-12 mb-4">
+      <label for="city" class="form-label">Cidade *</label>
+      <select id="city" class="form-select" aria-label="Escolha a cidade" required>
+        <option selected disabled>Escolha a cidade</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <div class="col-md-6 col-12 mb-4">
+      <label for="areaOfInterest" class="form-label">Área de interesse *</label>
+      <select id="areaOfInterest" class="form-select" aria-label="Escolha uma área de interesse" required>
+        <option selected disabled>Escolha uma área de interesse</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+
+    <hr class="dash mb-4" />
+
+    <h2 class="card-sub-title mb-3">Experiência profissional</h2>
+
+    <div class="col-12 mb-4 d-flex align-items-center">
+      <input class="form-check-input mt-0" type="checkbox" value="" id="hasWorkExperience" />
+      <label class="form-check-label px-2" for="hasWorkExperience">Possuo experiência profissional</label>
+    </div>
+
+    <div class="col-md-6 col-12 mb-4">
+      <label for="jobTitle" class="form-label">Cargo *</label>
+      <select id="jobTitle" class="form-select" aria-label="Escolha um cargo" required>
+        <option selected disabled>Escolha um cargo</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 col-12 mb-4">
+      <label for="company" class="form-label">Empresa *</label>
+      <input type="text" class="form-control" id="company" placeholder="Digite o nome da empresa" required />
+    </div>
+
+    <div class="col-md-4 col-12 mb-4 d-flex align-items-center">
+      <input class="form-check-input mt-0" type="checkbox" value="" id="actualJob" />
+      <label class="form-check-label px-2" for="actualJob">Atualmente trabalho aqui</label>
+    </div>
+
+    <div class="col-md-4 col-12 mb-4">
+      <label for="workStartDate" class="form-label">De *</label>
+      <input type="date" class="form-control" id="workStartDate" placeholder="De" required />
+    </div>
+
+    <div class="col-md-4 col-12 mb-4">
+      <label for="workEndDate" class="form-label">Até</label>
+      <input type="date" class="form-control" id="workEndDate" placeholder="Até" required />
+    </div>
+
+    <div class="col-12 mb-4">
+      <label for="description" class="form-label">Principais responsabilidades do cargo *</label>
+      <textarea class="form-control" style="max-height: 280px; overflow-y: auto;" id="description" rows="3" placeholder="Digite as suas responsabilidades" required></textarea>
+    </div>
+
+    <button type="button" class="btn btn-link text-start mb-4">Incluir mais uma experiência</button>
+
+    <hr class="dash mb-4" />
+
+    <h2 class="card-sub-title mb-3">Formação acadêmica</h2>
+
+    <div class="col-12 mb-4">
+      <label for="educationLevel" class="form-label">Grau de escolaridade *</label>
+      <select id="educationLevel" class="form-select" aria-label="Escolha o grau de escolaridade" required>
+        <option selected disabled>Escolha o grau de escolaridade</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 col-12 mb-4">
+      <label for="course" class="form-label">Curso *</label>
+      <select id="course" class="form-select" aria-label="Escolha um curso" required>
+        <option selected disabled>Escolha um curso</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 col-12 mb-4">
+      <label for="institution" class="form-label">Instituição *</label>
+      <input type="text" class="form-control" id="institution" placeholder="Digite o nome da instituição" required />
+    </div>
+
+    <div class="col-md-4 col-12 mb-4 d-flex align-items-center">
+      <input class="form-check-input mt-0" type="checkbox" value="" id="actualJob" />
+      <label class="form-check-label px-2" for="actualCourse">Atualmente estudo aqui</label>
+    </div>
+
+    <div class="col-md-4 col-12 mb-4">
+      <label for="courseStartDate" class="form-label">De *</label>
+      <input type="date" class="form-control" id="courseStartDate" placeholder="De" required />
+    </div>
+
+    <div class="col-md-4 col-12 mb-4">
+      <label for="courseEndDate" class="form-label">Até</label>
+      <input type="date" class="form-control" id="courseEndDate" placeholder="Até" required />
+    </div>
+
+    <button type="button" class="btn btn-link text-start mb-4">Incluir mais uma formação</button>
+
+    <hr class="dash mb-4" />
+
+    <h2 class="card-sub-title mb-3">Habilidades profissionais</h2>
+
+    <div class="col-md-6 col-12 mb-4">
+      <label for="course" class="form-label">Habilidades técnicas</label>
+      <select id="course" class="form-select mb-3" aria-label="Escolha habilidades que possui">
+        <option selected disabled>Escolha habilidades que possui</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+
+      <button type="button" class="btn btn-link d-block text-start">Incluir mais uma habilidade técnica</button>
+    </div>
+
+    <div class="col-md-6 col-12 mb-4">
+      <label for="course" class="form-label">Idiomas</label>
+      <select id="course" class="form-select mb-2" aria-label="Escolha um idioma">
+        <option selected disabled>Escolha um idioma</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+
+      <div class="form-check form-check-inline mb-3">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="level1" value="option1" />
+        <label class="form-check-label" for="level1">Básico</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="level2" value="option2" />
+        <label class="form-check-label" for="level2">Intermediário</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="level3" value="option3" />
+        <label class="form-check-label" for="level3">Avançado</label>
+      </div>
+
+      <button type="button" class="btn btn-link d-block text-start">Incluir mais um idioma</button>
+    </div>
+  </form>
 {% endblock %}
