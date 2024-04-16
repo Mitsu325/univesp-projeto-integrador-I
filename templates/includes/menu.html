@@ -1,0 +1,10 @@
+<nav>
+  <ul class="nav">
+    {% for item in menu_items %}
+      <li class="nav-item">
+        <!-- prettier-ignore -->
+        <a class="nav-link {% if request.path == item.url %}active{% endif %}" href="{{ item.url }}">{{ item.text }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
