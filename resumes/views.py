@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 
+# TODO: falta implementar a verificação has_resume e imprimir os dados básicos
 def index(request):
     has_resume = False
     context = {
