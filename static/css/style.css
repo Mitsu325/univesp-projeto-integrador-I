@@ -92,6 +92,10 @@ main {
   margin: 0 auto;
 }
 
+.txt-center {
+  text-align: center;
+}
+
 footer {
   margin: 24px auto;
   padding: 12px;
