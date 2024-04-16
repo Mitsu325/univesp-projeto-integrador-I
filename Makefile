@@ -1,6 +1,9 @@
 all:
 	/usr/bin/python3 manage.py runserver
 
+install:
+	pip install -r requirements.txt
+
 mg:
 	/usr/bin/python3 manage.py migrate
 

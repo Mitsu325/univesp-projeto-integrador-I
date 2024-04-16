@@ -1,1 +1,2 @@
 django-environ
+django-bootstrap-v5
