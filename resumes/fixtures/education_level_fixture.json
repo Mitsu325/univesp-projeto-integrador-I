@@ -1,0 +1,122 @@
+[
+  {
+    "model": "resumes.educationlevel",
+    "pk": 1,
+    "fields": {
+      "name": "Fundamental - Incompleto",
+      "key": "elementary_incomplete",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.educationlevel",
+    "pk": 2,
+    "fields": {
+      "name": "Fundamental - Completo",
+      "key": "elementary_complete",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.educationlevel",
+    "pk": 3,
+    "fields": {
+      "name": "Médio - Incompleto",
+      "key": "high_school_incomplete",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.educationlevel",
+    "pk": 4,
+    "fields": {
+      "name": "Médio - Completo",
+      "key": "high_school_complete",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.educationlevel",
+    "pk": 5,
+    "fields": {
+      "name": "Superior - Incompleto",
+      "key": "undergraduate_incomplete",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.educationlevel",
+    "pk": 6,
+    "fields": {
+      "name": "Superior - Completo",
+      "key": "undergraduate_complete",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.educationlevel",
+    "pk": 7,
+    "fields": {
+      "name": "Pós-graduação (Lato sensu) - Incompleto",
+      "key": "postgraduate_lato_incomplete",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.educationlevel",
+    "pk": 8,
+    "fields": {
+      "name": "Pós-graduação (Lato sensu) - Completo",
+      "key": "postgraduate_lato_complete",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.educationlevel",
+    "pk": 9,
+    "fields": {
+      "name": "Pós-graduação (Stricto sensu, nível mestrado) - Incompleto",
+      "key": "postgraduate_master_incomplete",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.educationlevel",
+    "pk": 10,
+    "fields": {
+      "name": "Pós-graduação (Stricto sensu, nível mestrado) - Completo",
+      "key": "postgraduate_master_complete",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.educationlevel",
+    "pk": 11,
+    "fields": {
+      "name": "Pós-graduação (Stricto sensu, nível doutor) - Incompleto",
+      "key": "postgraduate_doctor_incomplete",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.educationlevel",
+    "pk": 12,
+    "fields": {
+      "name": "Pós-graduação (Stricto sensu, nível doutor) - Completo",
+      "key": "postgraduate_doctor_complete",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  }
+]

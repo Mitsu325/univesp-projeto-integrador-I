@@ -1,0 +1,185 @@
+<<<<<<< HEAD
+body{
+    background-color: #ACB5BD;
+}
+
+.forms_background{
+    background-color:white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.title{
+    color: white;
+}
+
+.btn_enter{
+    background-color: #D9B882;
+    font-weight: bold;
+}
+
+.link_black{
+    color: black;
+}
+
+.label_register{
+    color:black;
+}
+
+.btn_create{
+    background-color: #D9B882;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-weight: bold;
+
+}
+
+.btn_back{
+    border: 2px solid #D9B882;
+    font-weight: bold;
+=======
+* {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #252525;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  padding: 32px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-link {
+  color: #b5b5b5;
+}
+
+.nav-link.active {
+  color: #252525;
+  border-bottom: 4px solid #d9b882;
+}
+
+.nav-link:focus,
+.nav-link:hover {
+  color: #252525;
+  transition: color 0.3s ease;
+}
+
+main {
+  width: 80%;
+  margin: 0 auto;
+  flex: 1;
+}
+
+hr.dash {
+  border: 1px dashed #b5b5b5;
+}
+
+.card {
+  background: #ffffff;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 2rem 4rem;
+}
+
+.card-title {
+  color: #565559;
+  font-size: 32px;
+}
+
+.card-sub-title {
+  color: #565559;
+  font-size: 24px;
+}
+
+.btn {
+  border-radius: 8px;
+}
+
+.btn-primary {
+  color: #252525;
+  background-color: #d9b882;
+  border-color: #d9b882;
+}
+
+.btn-primary:focus,
+.btn-primary:hover {
+  color: #252525;
+  background-color: #b08e5a;
+  border-color: #b08e5a;
+}
+
+.center {
+  display: block;
+  margin: 0 auto;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+footer {
+  margin: 24px auto;
+  padding: 12px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  main {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .card {
+    padding: 1rem 2rem;
+  }
+
+  .card-body {
+    padding: 1rem 0;
+  }
+
+  .card-title {
+    font-size: 24px;
+  }
+
+  .navbar .container-fluid {
+    justify-content: right;
+  }
+>>>>>>> c4b58f1576d75da64d6534379b9c73e3660256bb
+}

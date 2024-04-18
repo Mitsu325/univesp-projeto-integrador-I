@@ -1,0 +1,92 @@
+[
+  {
+    "model": "resumes.areaofinterest",
+    "pk": 1,
+    "fields": {
+      "name": "Auxiliar Administrativo",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.areaofinterest",
+    "pk": 2,
+    "fields": {
+      "name": "Assistente Administrativo",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.areaofinterest",
+    "pk": 3,
+    "fields": {
+      "name": "Analista de Sistema",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.areaofinterest",
+    "pk": 4,
+    "fields": {
+      "name": "RH",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.areaofinterest",
+    "pk": 5,
+    "fields": {
+      "name": "Auxiliar de Faturamento",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.areaofinterest",
+    "pk": 6,
+    "fields": {
+      "name": "Assistente de Faturamento",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.areaofinterest",
+    "pk": 7,
+    "fields": {
+      "name": "Auxiliar Financeiro",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.areaofinterest",
+    "pk": 8,
+    "fields": {
+      "name": "Assistente Financeiro",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.areaofinterest",
+    "pk": 9,
+    "fields": {
+      "name": "Auxiliar de Produção",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.areaofinterest",
+    "pk": 10,
+    "fields": {
+      "name": "Motorista",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  }
+]

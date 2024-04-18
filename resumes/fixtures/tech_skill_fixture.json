@@ -1,0 +1,472 @@
+[
+  {
+    "model": "resumes.technicalskill",
+    "pk": 1,
+    "fields": {
+      "name": "Python",
+      "key": "python",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 2,
+    "fields": {
+      "name": "JavaScript",
+      "key": "javascript",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 3,
+    "fields": {
+      "name": "HTML",
+      "key": "html",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 4,
+    "fields": {
+      "name": "CSS",
+      "key": "css",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 5,
+    "fields": {
+      "name": "React",
+      "key": "react",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 6,
+    "fields": {
+      "name": "Angular",
+      "key": "angular",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 7,
+    "fields": {
+      "name": "Node.js",
+      "key": "nodejs",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 8,
+    "fields": {
+      "name": "Django",
+      "key": "django",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 9,
+    "fields": {
+      "name": "Java",
+      "key": "java",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 10,
+    "fields": {
+      "name": "C#",
+      "key": "csharp",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 11,
+    "fields": {
+      "name": "SQL",
+      "key": "sql",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 12,
+    "fields": {
+      "name": "MongoDB",
+      "key": "mongodb",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 13,
+    "fields": {
+      "name": "React Native",
+      "key": "react_native",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 14,
+    "fields": {
+      "name": "Google Cloud Platform",
+      "key": "gcp",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 15,
+    "fields": {
+      "name": "Vue.js",
+      "key": "vuejs",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 16,
+    "fields": {
+      "name": "Git",
+      "key": "git",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 17,
+    "fields": {
+      "name": "Docker",
+      "key": "docker",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 18,
+    "fields": {
+      "name": "Kubernetes",
+      "key": "kubernetes",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 19,
+    "fields": {
+      "name": "AWS",
+      "key": "aws",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 20,
+    "fields": {
+      "name": "Azure",
+      "key": "azure",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 21,
+    "fields": {
+      "name": "Hadoop",
+      "key": "hadoop_data_tool",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 22,
+    "fields": {
+      "name": "Spark",
+      "key": "spark_data_tool",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 23,
+    "fields": {
+      "name": "AWS Glue",
+      "key": "aws_glue_data_tool",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 24,
+    "fields": {
+      "name": "Matplotlib",
+      "key": "matplotlib_data_tool",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 25,
+    "fields": {
+      "name": "Excel",
+      "key": "excel_data_tool",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 26,
+    "fields": {
+      "name": "Tableau",
+      "key": "tableau_data_tool",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 27,
+    "fields": {
+      "name": "Power BI",
+      "key": "power_bi_data_tool",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 28,
+    "fields": {
+      "name": "SQL Server",
+      "key": "sql_server_data_tool",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 29,
+    "fields": {
+      "name": "Microsoft Office",
+      "key": "microsoft_office",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 30,
+    "fields": {
+      "name": "Google Workspace",
+      "key": "google_workspace",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 31,
+    "fields": {
+      "name": "Evernote",
+      "key": "evernote_productivity_tool",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 32,
+    "fields": {
+      "name": "Trello",
+      "key": "trello_productivity_tool",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 33,
+    "fields": {
+      "name": "Comunicação",
+      "key": "communication",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 34,
+    "fields": {
+      "name": "Trabalho em equipe",
+      "key": "teamwork",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 35,
+    "fields": {
+      "name": "Gestão do tempo",
+      "key": "time_management",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 36,
+    "fields": {
+      "name": "Resolução de problemas",
+      "key": "problem_solving",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 37,
+    "fields": {
+      "name": "Adaptabilidade",
+      "key": "adaptability",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 38,
+    "fields": {
+      "name": "Criatividade",
+      "key": "creativity",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 39,
+    "fields": {
+      "name": "Pensamento crítico",
+      "key": "critical_thinking",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 40,
+    "fields": {
+      "name": "Empatia",
+      "key": "empathy",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 41,
+    "fields": {
+      "name": "Liderança",
+      "key": "leadership",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 42,
+    "fields": {
+      "name": "Resiliência",
+      "key": "resilience",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 43,
+    "fields": {
+      "name": "Negociação",
+      "key": "negotiation",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 44,
+    "fields": {
+      "name": "Ética profissional",
+      "key": "professional_ethics",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 45,
+    "fields": {
+      "name": "Gestão de conflitos",
+      "key": "conflict_management",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 46,
+    "fields": {
+      "name": "Trabalho sob pressão",
+      "key": "working_under_pressure",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "resumes.technicalskill",
+    "pk": 47,
+    "fields": {
+      "name": "Autoconfiança",
+      "key": "self-confidence",
+      "created_at": "2024-04-01T00:00:00Z",
+      "updated_at": "2024-04-01T00:00:00Z"
+    }
+  }
+]

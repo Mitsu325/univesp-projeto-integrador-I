@@ -1,5 +1,8 @@
-from django.http import HttpResponse
+from django.views.generic import TemplateView
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the candidates index.")
+class HomeCandidates(TemplateView):
+    template_name = "home_candidates.html"
+
+class RegisterCandidates(TemplateView):
+    template_name = "register_candidates.html"
