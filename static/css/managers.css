@@ -1,0 +1,32 @@
+body {
+  background-color: #8b847e;
+}
+
+.title-managers {
+  color: #d9b882;
+  font-size: 32px;
+}
+
+.description {
+  color: #fff;
+  font-size: 16px;
+}
+
+.profile-img {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.card-title {
+  text-align: center;
+}
+
+footer {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .profile-img {
+    display: none;
+  }
+}
