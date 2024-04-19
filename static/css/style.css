@@ -96,6 +96,18 @@ hr.dash {
   border-color: #b08e5a;
 }
 
+.btn-outline-primary {
+  color: #252525;
+  border-color: #d9b882;
+}
+
+.btn-outline-primary:focus,
+.btn-outline-primary:hover {
+  color: #252525;
+  background-color: #b08e5a;
+  border-color: #b08e5a;
+}
+
 .center {
   display: block;
   margin: 0 auto;

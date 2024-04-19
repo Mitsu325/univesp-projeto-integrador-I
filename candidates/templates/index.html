@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  SS Tires - Candidatos
+{% endblock %}
+
+{% block description %}
+  Página do candidato
+{% endblock %}
+
+{% block content %}
+  <h1 class="title mb-5">
+    Venha fazer parte do nosso time!<br />
+    Acesse nosso portal de currículo
+  </h1>
+
+  <div class="row mb-4">
+    <div class="col-md-6 d-flex justify-content-center align-items-center">
+      <img class="candidate-resume-image" src="{% static 'image/candidate-resume.svg' %}" alt="" />
+    </div>
+    <div class="col-md-6">
+      <div class="card card-sm">
+        <h2 class="card-title">Acessar</h2>
+
+        <form action="submit">
+          <div class="mb-4">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" placeholder="Digite o seu e-mail" required />
+          </div>
+          <div class="mb-4">
+            <label for="password" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="password" placeholder="Digite a senha" required />
+          </div>
+
+          <a href="{% url 'candidates:register' %}" class="link">Primeiro acesso? Crie sua conta</a>
+
+          <div class="txt-center mt-4">
+            <button type="submit" class="btn btn-primary">Entrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
