@@ -1,0 +1,93 @@
+body {
+  background-color: #acb5bd;
+}
+
+header {
+  padding: 20px 0;
+  justify-content: center;
+}
+
+.logo {
+  width: 210px;
+}
+
+.title {
+  color: #fff;
+  font-size: 28px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.candidate-resume-image {
+  width: 320px;
+}
+
+.card-sm {
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.card-lg {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.card-title {
+  font-size: 24px;
+  text-align: center;
+}
+
+.link {
+  color: #252525;
+  display: block;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .candidate-resume-image {
+    display: none;
+  }
+}
+
+/* .forms_background {
+  background-color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.title {
+  color: white;
+}
+
+.btn_enter {
+  background-color: #d9b882;
+  font-weight: bold;
+}
+
+.link_black {
+  color: black;
+}
+
+.label_register {
+  color: black;
+}
+
+.btn_create {
+  background-color: #d9b882;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  font-weight: bold;
+}
+
+.btn_back {
+  border: 2px solid #d9b882;
+  font-weight: bold;
+} */

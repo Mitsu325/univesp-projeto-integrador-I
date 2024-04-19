@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  SS Tires - Candidatos
+{% endblock %}
+
+{% block description %}
+  Cadastro do candidato
+{% endblock %}
+
+{% block content %}
+  <div class="card card-lg">
+    <h2 class="card-title">Cadastro</h2>
+
+    <form action="submit">
+      <div class="mb-4">
+        <label for="name" class="form-label">Nome completo</label>
+        <input type="text" class="form-control" id="name" placeholder="Digite o seu nome completo" required />
+      </div>
+
+      <div class="mb-4">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="email" placeholder="Digite o seu e-mail" required />
+      </div>
+
+      <div class="mb-4">
+        <label for="password" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="password" placeholder="Digite a senha" required />
+      </div>
+
+      <div class="mb-4">
+        <label for="password" class="form-label">Confirme sua senha</label>
+        <input type="password" class="form-control" id="password" placeholder="Digite a senha" required />
+      </div>
+
+      <a href="{% url 'candidates:register' %}" class="link">Primeiro acesso? Crie sua conta</a>
+
+      <div class="mt-4 d-flex justify-content-center">
+        <a href="{% url 'candidates:index' %}" class="btn btn-outline-primary mx-3">Voltar</a>
+        <button type="submit" class="btn btn-primary mx-3">Criar conta</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
