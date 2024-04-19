@@ -2,44 +2,56 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/managers.css' %}">
-    <title>LoginAdm</title>
-</head>
-<body>
-  <header>
-    <div class="head">
-    <img src="{% static 'image/SSTires-logo.png' %}" width="131px" height="40px" alt="Responsive">
-  </div>
-  </header>
-  <div class="body-container">
-    <div class="container-info">
-      <div class="title-managers">
-        <h1>Bem-vindo à nossa plataforma de Gestão de Currículos!</h1>
-        <div class="description-managers">
-          <h2>Simplifique seu processo de recrutamento e gerencie currículos de forma eficiente. Faça login agora para começar.</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SS Tires - Gestão de currículo</title>
+    <meta name="description" content="Gestão de curriculo - login" />
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/managers.css' %}" />
+  </head>
+  <body>
+    <header>
+      <img src="{% static 'image/logo.svg' %}" alt="" />
+    </header>
+    <main>
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="title-managers mb-3">Bem-vindo à nossa plataforma de Gestão de Currículos!</h1>
+          <p class="description mb-4">Simplifique seu processo de recrutamento e gerencie currículos de forma eficiente. Faça login agora para começar.</p>
+          <div class="d-flex justify-content-center">
+            <img src="{% static 'image/profiles.svg' %}" class="profile-img" alt="" />
+          </div>
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+          <div class="card">
+            <h2 class="card-title mb-3">Acessar</h2>
+            <form action="">
+              <div class="mb-4">
+                <label for="email" class="form-label">E-mail *</label>
+                <input type="email" class="form-control" id="email" placeholder="Digite o e-mail" required />
+              </div>
+              <div class="mb-4">
+                <label for="password" class="form-label">Senha *</label>
+                <input type="password" class="form-control" id="password" placeholder="Digite a senha" required />
+              </div>
+              <div class="txt-center">
+                <button type="submit" class="btn btn-primary">Entrar</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-      <div class="form-image">
-        <img src="{% static 'image/profiles.svg' %}" width="300px" height="300px" alt="Responsive">
-      </div>
-    </div>
-    <div class="container-form">
-      <div class="login-container">
-        <h2>Acessar</h2>
-        <form action="processa_login.php" method="post">
-            <label for="E-mail">E-mail:</label>
-            <input type="text" id="E-mail" name="E-mail" placeholder="Digite o seu E-mail" required>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" placeholder="Digite a sua senha">
-            <input type="submit" value="Entrar">
-        </form>
-      </div>
-    </div>
-  </div>
-  <footer>© 2024 PI - SS Tires. Todos os direitos reservados.</footer>
-</body>
+    </main>
+    <footer>
+      <p>&copy; 2024 PI - SS Tires. Todos os direitos reservados.</p>
+    </footer>
+  </body>
 </html>

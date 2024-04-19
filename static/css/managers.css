@@ -1,113 +1,32 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #8B847E;
+  background-color: #8b847e;
 }
 
-.head {
-    margin: 30px;
+.title-managers {
+  color: #d9b882;
+  font-size: 32px;
 }
 
-.body-container {
-    display: flex;
-     margin: 50px;
-    margin-right: 10%; /* Margem direita menor em telas menores */
+.description {
+  color: #fff;
+  font-size: 16px;
 }
 
-.container-info {
-    margin: 50px;
-    margin-top: 0;
-    margin-bottom: 0;
+.profile-img {
+  width: 300px;
+  margin: 0 auto;
 }
 
-.title-managers h1 {
-    width: 100%;
-    color: #D9B882;
-    text-align: center; /* Centralizar o texto */
-}
-
-.description-managers {
-    margin-right: 10%; /* Margem direita menor em telas menores */
-    margin-bottom: 50px; /* Adicionando espaço extra entre elementos */
-}
-
-.description-managers h2 {
-    width: 100%;
-    color: white;
-    text-align: center; /* Centralizar o texto */
-    font-size: medium;
-    font-weight: 100;
-}
-
-.form-image {
-    margin: 50px;
-}
-
-.container-form {
-    margin-top: 100px;
-}
-
-.login-container {
-    width: 80%; /* Reduzir a largura do contêiner para se ajustar melhor em telas menores */
-    max-width: 400px; /* Definir uma largura máxima para evitar que o contêiner fique muito grande */
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-}
-
-.login-container h2 {
-    text-align: center;
-    color: #565559;
-}
-
-.login-container input[type="text"],
-.login-container input[type="password"],
-.login-container input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    margin-bottom: 20px; /* Reduzir a margem inferior dos inputs */
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.login-container input[type="submit"] {
-    background-color: #D9B882;
-    color: black;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    width: 40%; /* Largura total do botão */
-    margin-left: 70px;
-
+.card-title {
+  text-align: center;
 }
 
 footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 12vh;
-    color: white;
+  color: #fff;
 }
 
-/* Consulta de mídia para telas menores */
-@media screen and (max-width: 768px) {
-    .body-container {
-        margin-right: 5%; /* Reduzir ainda mais a margem direita */
-    }
-    .description-managers {
-        margin-right: 5%; /* Reduzir ainda mais a margem direita */
-    }
-}
-@media only screen and (max-width: 1000px) {
-    .form-image {
-        display: none;
-    }
-    .body-container {
-        flex-direction: column;
-    }
-    
+@media (max-width: 768px) {
+  .profile-img {
+    display: none;
+  }
 }
