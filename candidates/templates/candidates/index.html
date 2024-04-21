@@ -24,13 +24,25 @@
         <h2 class="card-title">Acessar</h2>
 
         <form action="submit">
+          {% if messages %}
+            {% for message in messages %}
+              {% if message.tags == 'error' %}
+                <div class="alert alert-danger" role="alert">{{ message }}</div>
+              {% elif message.tags == 'success' %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+              {% else %}
+                <div class="alert alert-info" role="alert">{{ message }}</div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
           <div class="mb-4">
             <label for="email" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="email" placeholder="Digite o seu e-mail" required />
+            <input type="email" class="form-control" id="email" name="email" placeholder="Digite o seu e-mail" required />
           </div>
           <div class="mb-4">
             <label for="password" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="password" placeholder="Digite a senha" required />
+            <input type="password" class="form-control" id="password" name="password" placeholder="Digite a senha" required />
           </div>
 
           <a href="{% url 'candidates:register' %}" class="link">Primeiro acesso? Crie sua conta</a>
