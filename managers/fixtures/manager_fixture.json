@@ -1,0 +1,13 @@
+[
+  {
+    "model": "managers.manager",
+    "pk": 1,
+    "fields": {
+      "name": "Patricia Admin",
+      "email": "patricia_admin@example.com",
+      "password": "bcrypt_sha256$$2b$12$snStQyNMKzPjypD2174jR.y8VRa7j0jisFBx0vbPw7OPV05LFYV3K",
+      "created_at": "2024-04-21T12:00:00Z",
+      "updated_at": "2024-04-21T12:00:00Z"
+    }
+  }
+]
