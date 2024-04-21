@@ -11,7 +11,7 @@ def index(request):
             {"text": "Configuração", "url": "/resumes/config"},
         ],
     }
-    return render(request, "index.html", context)
+    return render(request, "resumes/index.html", context)
 
 
 def edit(request):
@@ -23,4 +23,4 @@ def edit(request):
             {"text": "Configuração", "url": "/resumes/config"},
         ],
     }
-    return render(request, "edit.html", context)
+    return render(request, "resumes/edit.html", context)
