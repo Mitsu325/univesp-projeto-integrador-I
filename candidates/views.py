@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from .models import Candidate
 
 
@@ -17,6 +17,18 @@ def validate_password(password):
 
 
 def index(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        try:
+            candidate = Candidate.objects.get(email=email)
+            if check_password(password, candidate.password):
+                request.session["candidate_id"] = candidate.id
+                return redirect("resumes:index")
+            else:
+                messages.error(request, "E-mail ou senha incorretos.")
+        except Candidate.DoesNotExist:
+            messages.error(request, "E-mail ou senha incorretos.")
     return render(request, "candidates/index.html")
 
 
@@ -26,9 +38,6 @@ def register(request):
         email = request.POST.get("email")
         password = request.POST.get("password")
         confirm_password = request.POST.get("confirm_password")
-
-        print(password)
-        print(confirm_password)
 
         if not name:
             messages.error(request, "Nome é obrigatório.")
@@ -64,7 +73,7 @@ def register(request):
             return redirect("candidates:register")
 
         candidate = Candidate(name=name, email=email, password=make_password(password))
-        print(candidate)
+
         candidate.save()
 
         messages.success(

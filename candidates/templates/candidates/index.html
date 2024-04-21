@@ -23,18 +23,20 @@
       <div class="card card-sm">
         <h2 class="card-title">Acessar</h2>
 
-        <form action="submit">
-          {% if messages %}
-            {% for message in messages %}
-              {% if message.tags == 'error' %}
-                <div class="alert alert-danger" role="alert">{{ message }}</div>
-              {% elif message.tags == 'success' %}
-                <div class="alert alert-success" role="alert">{{ message }}</div>
-              {% else %}
-                <div class="alert alert-info" role="alert">{{ message }}</div>
-              {% endif %}
-            {% endfor %}
-          {% endif %}
+        {% if messages %}
+          {% for message in messages %}
+            {% if message.tags == 'error' %}
+              <div class="alert alert-danger" role="alert">{{ message }}</div>
+            {% elif message.tags == 'success' %}
+              <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% else %}
+              <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        <form method="post">
+          {% csrf_token %}
 
           <div class="mb-4">
             <label for="email" class="form-label">E-mail</label>
