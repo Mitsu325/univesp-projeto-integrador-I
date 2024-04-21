@@ -12,28 +12,49 @@
   <div class="card card-lg">
     <h2 class="card-title">Cadastro</h2>
 
-    <form action="submit">
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+          <div class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>
+        {% elif message.tags == 'success' %}
+          <div class="alert alert-success" role="alert">
+            {{ message }}
+          </div>
+        {% else %}
+          <div class="alert alert-info" role="alert">
+            {{ message }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+
+    <form method="post">
+      {% csrf_token %}
       <div class="mb-4">
         <label for="name" class="form-label">Nome completo</label>
-        <input type="text" class="form-control" id="name" placeholder="Digite o seu nome completo" required />
+        <input value="{{ name }}" type="text" class="form-control" id="name" name="name" placeholder="Digite o seu nome completo" required />
       </div>
 
       <div class="mb-4">
         <label for="email" class="form-label">E-mail</label>
-        <input type="email" class="form-control" id="email" placeholder="Digite o seu e-mail" required />
+        <input value="{{ email }}" type="email" class="form-control" id="email" name="email" placeholder="Digite o seu e-mail" required />
       </div>
 
       <div class="mb-4">
         <label for="password" class="form-label">Senha</label>
-        <input type="password" class="form-control" id="password" placeholder="Digite a senha" required />
+        <input type="password" class="form-control" id="password" name="password" placeholder="Digite a senha"
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}"
+        title="A senha deve conter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial."
+        required />
       </div>
 
       <div class="mb-4">
-        <label for="password" class="form-label">Confirme sua senha</label>
-        <input type="password" class="form-control" id="password" placeholder="Digite a senha" required />
+        <label for="confirm_password" class="form-label">Confirme sua senha</label>
+        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Digite a senha" required />
       </div>
-
-      <a href="{% url 'candidates:register' %}" class="link">Primeiro acesso? Crie sua conta</a>
 
       <div class="mt-4 d-flex justify-content-center">
         <a href="{% url 'candidates:index' %}" class="btn btn-outline-primary mx-3">Voltar</a>
