@@ -18,8 +18,18 @@ class AuthMiddleware:
                 return redirect("candidates:index")
 
         if request.path in [
+            reverse("management:index"),
+            reverse("management:config"),
+        ]:
+            if "candidate_id" in request.session:
+                return redirect("resumes:index")
+            if "manager_id" not in request.session:
+                return redirect("managers:index")
+
+        if request.path in [
             reverse("candidates:index"),
             reverse("candidates:register"),
+            reverse("managers:index"),
         ]:
             if "candidate_id" in request.session:
                 return redirect("resumes:index")
