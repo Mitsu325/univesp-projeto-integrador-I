@@ -31,7 +31,7 @@
     {% endif %}
 
 
-    <form method="post">
+    <form method="post" action="{% url 'candidates:register' %}">
       {% csrf_token %}
       <div class="mb-4">
         <label for="name" class="form-label">Nome completo</label>
