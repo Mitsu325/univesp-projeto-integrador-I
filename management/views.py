@@ -3,3 +3,7 @@ from django.http import HttpResponse
 
 def index(request):
     return HttpResponse("Hello, world. You're at the management index.")
+
+
+def config(request):
+    return HttpResponse("Hello, world. You're at the management config.")
