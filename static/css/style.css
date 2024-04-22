@@ -58,6 +58,16 @@ main {
   flex: 1;
 }
 
+.sub-title {
+  color: #565559;
+  font-size: 28px;
+}
+
+.sm-text {
+  color: #acb5bd;
+  font-size: 14px;
+}
+
 hr.dash {
   border: 1px dashed #b5b5b5;
 }
@@ -84,6 +94,19 @@ hr.dash {
   font-size: 18px;
 }
 
+th {
+  color: #565559;
+  background-color: #f3f6f9;
+  font-weight: 800;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+td {
+  text-align: center;
+  padding: 1rem 0;
+}
+
 .btn {
   border-radius: 8px;
 }
@@ -101,6 +124,19 @@ hr.dash {
   border-color: #b08e5a;
 }
 
+.btn-cyan {
+  color: #252525;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #c9f7f5;
+}
+
+.btn-cyan:focus,
+.btn-cyan:hover {
+  color: #252525;
+  background-color: #b9e2e0;
+}
+
 .btn-outline-primary {
   color: #252525;
   border-color: #d9b882;
@@ -111,6 +147,10 @@ hr.dash {
   color: #252525;
   background-color: #b08e5a;
   border-color: #b08e5a;
+}
+
+option:disabled {
+  color: #565559;
 }
 
 .center {

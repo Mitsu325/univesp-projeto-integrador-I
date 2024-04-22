@@ -9,5 +9,98 @@
 {% endblock %}
 
 {% block content %}
-  <h1 class="card-title mb-4">Lista de currículo...</h1>
+  <div class="row">
+    <div class="col-lg-3 col-4">
+      <h2 class="sub-title mb-4">Filtros</h2>
+      <div class="form-floating mb-3">
+        <select class="form-select" id="professionalExperience" aria-label="Escolha uma experiência profisional">
+          <option selected disabled>Escolha uma opção</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <label for="professionalExperience">Experiência profissional</label>
+      </div>
+      <div class="form-floating mb-3">
+        <select class="form-select" id="periodWorked" aria-label="Escolha uma período">
+          <option selected disabled>Escolha uma opção</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <label for="periodWorked">Periodo trabalhado</label>
+      </div>
+      <div class="form-floating mb-3">
+        <select class="form-select" id="education" aria-label="Escolha uma formação acadêmica">
+          <option selected disabled>Escolha uma opção</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <label for="education">Formção acadêmica</label>
+      </div>
+      <div class="form-floating mb-3">
+        <select class="form-select" id="hability" aria-label="Escolha uma habilidade técnica">
+          <option selected disabled>Escolha uma opção</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <label for="hability">Habilidades técnicas</label>
+      </div>
+      <div class="form-floating mb-3">
+        <select class="form-select" id="state" aria-label="Escolha um Estado">
+          <option selected disabled>Escolha uma opção</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <label for="state">Estado</label>
+      </div>
+      <div class="form-floating mb-3">
+        <select class="form-select" id="city" aria-label="Escolha uma Cidade">
+          <option selected disabled>Escolha uma opção</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <label for="city">Cidade</label>
+      </div>
+    </div>
+    <div class="col-lg-9 col-8">
+      <div class="card">
+        <h1 class="card-title mb-2">Candidatos</h1>
+        <span class="sm-text mb-4">Total: 2 pessoas</span>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Nome Completo</th>
+              <th>Área de Interesse</th>
+              <th>Experiência Profissional</th>
+              <th>Detalhes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>João da Silva</td>
+              <td>Tecnologia</td>
+              <td>Desenvolvedor Web</td>
+              <td>
+                <button class="btn btn-cyan" onclick="showDetail(1)">Ver Mais</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Maria Souza</td>
+              <td>Marketing</td>
+              <td>Analista de Marketing</td>
+              <td>
+                <button class="btn btn-cyan" onclick="showDetail(2)">Ver Mais</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 {% endblock %}
