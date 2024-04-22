@@ -79,6 +79,11 @@ hr.dash {
   font-size: 24px;
 }
 
+.card-resume-sub-title {
+  color: #565559;
+  font-size: 18px;
+}
+
 .btn {
   border-radius: 8px;
 }
@@ -115,6 +120,10 @@ hr.dash {
 
 .txt-center {
   text-align: center;
+}
+
+.resume-info {
+  margin-left: 2rem;
 }
 
 footer {

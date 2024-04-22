@@ -10,8 +10,76 @@
 
 {% block content %}
   <h1 class="card-title mb-4">Dados de cadastro</h1>
-  <p>Complete seu perfil para estar disponível para oportunidades!</p>
-  <div class="txt-center">
-    <a class="btn btn-primary mt-40" href="/resumes/edit" role="button">Cadastrar currículo</a>
-  </div>
+  {% if has_resume %}
+    <div class="row">
+      <div class="col-lg-6 col-12 mb-4">
+        <h2 class="card-sub-title mb-3">Informações pessoais</h2>
+        <ul class="resume-info">
+          <li>Nome: João da Silva</li>
+          <li>E-mail: joao.silva@email.com</li>
+          <li>Idade: 30 anos</li>
+          <li>Localização: São Paulo, SP</li>
+          <li>Gênero: Masculino</li>
+          <li>Telefone: (11) 98765-4321</li>
+          <li>LinkedIn: linkedin.com/in/jsilva</li>
+        </ul>
+      </div>
+      <div class="col-lg-6 col-12 mb-4">
+        <h2 class="card-sub-title mb-3">Área de interesse</h2>
+        <p>Desenvolvimento de Software</p>
+      </div>
+
+      <hr class="dash mb-4" />
+
+      <div class="col-12 mb-4">
+        <h2 class="card-sub-title mb-3">Experiência profissional</h2>
+        <h3 class="card-resume-sub-title">Desenvolvedor Web, Empresa X</h3>
+        <ul class="resume-info mb-2">
+          <li>Período: Janeiro 2021 - Presente</li>
+          <li>Responsabilidades: Desenvolvimento e manutenção de aplicações web utilizando tecnologias front-end e back-end.</li>
+        </ul>
+        <h3 class="card-resume-sub-title">Estagiário de Desenvolvimento Web, Empresa Y</h3>
+        <ul class="resume-info mb-2">
+          <li>Período: Maio 2019 - Dezembro 2020</li>
+          <li>Responsabilidades: Suporte no desenvolvimento de novas funcionalidades para sites e sistemas web.</li>
+        </ul>
+      </div>
+
+      <hr class="dash mb-4" />
+
+      <div class="col-12 mb-4">
+        <h2 class="card-sub-title mb-3">Educação</h2>
+        <h3 class="card-resume-sub-title">Graduação em Ciência da Computação, Universidade Z</h3>
+        <ul class="resume-info mb-2">
+          <li>Período: 2016 - 2020</li>
+        </ul>
+      </div>
+
+      <hr class="dash mb-4" />
+
+      <div class="col-lg-6 col-12 mb-4">
+        <h2 class="card-sub-title mb-3">Habilidades técnicas</h2>
+        <ul class="resume-info">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>React</li>
+        </ul>
+      </div>
+      <div class="col-lg-6 col-12 mb-4">
+        <h2 class="card-sub-title mb-3">Idiomas</h2>
+        <ul class="resume-info">
+          <li>Inglês (nativo)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="txt-center">
+      <a class="btn btn-primary mt-40" href="/resumes/edit" role="button">Editar currículo</a>
+    </div>
+  {% else %}
+    <p>Complete seu perfil para estar disponível para oportunidades!</p>
+    <div class="txt-center">
+      <a class="btn btn-primary mt-40" href="/resumes/edit" role="button">Cadastrar currículo</a>
+    </div>
+  {% endif %}
 {% endblock %}
