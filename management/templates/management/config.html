@@ -1,0 +1,17 @@
+{% extends 'management/base.html' %}
+
+{% block title %}
+  SS Tires - Configuração
+{% endblock %}
+
+{% block description %}
+  Configuração do recrutador
+{% endblock %}
+
+{% block content %}
+  <h1 class="card-title mb-4">Configuração</h1>
+  <form method="post" action="{% url 'management:config' %}">
+    {% csrf_token %}
+    <button type="submit" name="logout" class="btn btn-primary">Sair da conta</button>
+  </form>
+{% endblock %}
