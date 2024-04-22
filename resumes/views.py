@@ -25,8 +25,14 @@ def edit(request):
 
 
 def config(request):
+    context = {
+        "menu_items": [
+            {"text": "Currículo", "url": "/resumes/"},
+            {"text": "Configuração", "url": "/resumes/config"},
+        ],
+    }
     if request.method == "POST":
         if "logout" in request.POST:
             request.session.flush()
             return redirect("candidates:index")
-    return render(request, "resumes/config.html")
+    return render(request, "resumes/config.html", context)
