@@ -15,6 +15,8 @@ class Course(models.Model):
 
 class Education(models.Model):
     DEGREE_TYPES = (
+        ("elementary", "Fundamental"),
+        ("high_school", "Ensino Médio"),
         ("technical", "Técnico"),
         ("bachelor", "Bacharelado"),
         ("teaching", "Licenciatura"),
