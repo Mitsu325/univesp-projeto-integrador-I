@@ -9,40 +9,45 @@
 {% endblock %}
 
 {% block content %}
+  {% if success_message %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{ success_message }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endif %}
+
   <h1 class="card-title mb-4">Dados de cadastro</h1>
+
   {% if has_resume %}
     <div class="row">
       <div class="col-lg-6 col-12 mb-4">
         <h2 class="card-sub-title mb-3">Informações pessoais</h2>
         <ul class="resume-info">
-          <li>Nome: João da Silva</li>
-          <li>E-mail: joao.silva@email.com</li>
-          <li>Idade: 30 anos</li>
-          <li>Localização: São Paulo, SP</li>
-          <li>Gênero: Masculino</li>
-          <li>Telefone: (11) 98765-4321</li>
-          <li>LinkedIn: linkedin.com/in/jsilva</li>
+          <li>Nome: {{ candidate.social_name|default_if_none:candidate.name }}</li>
+          <li>E-mail: {{ candidate.email }}</li>
+          <li>Idade: {{ age_in_years }} anos</li>
+          <li>Localização: {{ resume.city.name }}, {{ resume.state.abbreviation }}</li>
+          <li>Gênero: {{ resume.gender.name }}</li>
+          <li>Telefone: {{ resume.telephone }}</li>
+          <li>LinkedIn: {{ resume.linkedin }}</li>
         </ul>
       </div>
       <div class="col-lg-6 col-12 mb-4">
         <h2 class="card-sub-title mb-3">Área de interesse</h2>
-        <p>Desenvolvimento de Software</p>
+        <p>{{ resume.area_of_interest.name }}</p>
       </div>
 
       <hr class="dash mb-4" />
 
       <div class="col-12 mb-4">
         <h2 class="card-sub-title mb-3">Experiência profissional</h2>
-        <h3 class="card-resume-sub-title">Desenvolvedor Web, Empresa X</h3>
-        <ul class="resume-info mb-2">
-          <li>Período: Janeiro 2021 - Presente</li>
-          <li>Responsabilidades: Desenvolvimento e manutenção de aplicações web utilizando tecnologias front-end e back-end.</li>
-        </ul>
-        <h3 class="card-resume-sub-title">Estagiário de Desenvolvimento Web, Empresa Y</h3>
-        <ul class="resume-info mb-2">
-          <li>Período: Maio 2019 - Dezembro 2020</li>
-          <li>Responsabilidades: Suporte no desenvolvimento de novas funcionalidades para sites e sistemas web.</li>
-        </ul>
+        {% for work_experience in work_experiences.all %}
+          <h3 class="card-resume-sub-title">{{ work_experience.job_title.title }}, {{ work_experience.company }}</h3>
+          <ul class="resume-info mb-2">
+            <li>Período: {{ work_experience.start_date }} - {{ work_experience.end_date|default_if_none:'Presente' }}</li>
+            <li>Responsabilidades: {{ work_experience.description }}</li>
+          </ul>
+        {% endfor %}
       </div>
 
       <hr class="dash mb-4" />

@@ -10,204 +10,760 @@
 
 {% block content %}
   <h1 class="card-title mb-4">Cadastro de currículo</h1>
-  <form action="" class="row">
+
+  {% if messages %}
+    {% for message in messages %}
+      {% if message.tags == 'error' %}
+        <div class="alert alert-danger" role="alert">
+          {{ message }}
+        </div>
+      {% elif message.tags == 'success' %}
+        <div class="alert alert-success" role="alert">
+          {{ message }}
+        </div>
+      {% else %}
+        <div class="alert alert-info" role="alert">
+          {{ message }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  <form method="post" action="{% url 'resumes:edit' %}" class="row">
+    {% csrf_token %}
     <h2 class="card-sub-title mb-3">Informações básicas</h2>
     <div class="col-md-6 col-12 mb-4">
       <label for="name" class="form-label">Nome completo *</label>
-      <input type="text" class="form-control" id="name" placeholder="Digite o nome completo" value="João" required />
+      <input type="text" class="form-control" id="name" name="name" placeholder="Digite o nome completo" value="{{ candidate.name|default_if_none:'' }}" required />
     </div>
     <div class="col-md-6 col-12 mb-4">
       <label for="email" class="form-label">E-mail *</label>
-      <input type="email" class="form-control" id="email" placeholder="Digite o e-mail" value="joao@mail.com" required />
+      <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail" value="{{ candidate.email|default_if_none:'' }}" required />
     </div>
     <div class="col-md-6 col-12 mb-4">
       <label for="socialName" class="form-label">Nome social</label>
-      <input type="text" class="form-control" id="socialName" placeholder="Digite o nome social" />
+      <input type="text" class="form-control" id="socialName" name="social_name" placeholder="Digite o nome social" value="{{ candidate.social_name|default_if_none:'' }}" />
     </div>
     <div class="col-md-6 col-12 mb-4">
-      <label for="cellphone" class="form-label">Telefone</label>
-      <input type="text" class="form-control" id="cellphone" placeholder="Digite o seu número de contato" />
+      <label for="telephone" class="form-label">Telefone</label>
+      <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Digite o seu número de contato" value="{{ resume.telephone|default_if_none:'' }}" />
     </div>
     <div class="col-lg-3 col-md-6 col-12 mb-4">
       <label for="birthday" class="form-label">Data de nascimento *</label>
-      <input type="date" class="form-control" id="birthday" placeholder="Data de nascimento" required />
+      <input type="date" class="form-control" id="birthday" name="date_of_birth" placeholder="Data de nascimento" value="{{ resume.date_of_birth|default_if_none:''|date:'Y-m-d' }}" required />
     </div>
     <div class="col-lg-3 col-md-6 col-12 mb-4">
       <label for="gender" class="form-label">Gênero *</label>
-      <select id="gender" class="form-select" aria-label="Escolha o gênero" required>
-        <option selected disabled>Escolha o gênero</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <select id="gender" name="gender" class="form-select" aria-label="Escolha o gênero" required>
+        <option {% if not resume.gender %} selected {% endif %} disabled>Escolha o gênero</option>
+        {% for gender in genders %}
+          <option value="{{ gender.id }}" {% if gender.id == resume.gender.id %} selected {% endif %}>
+            {{ gender.name }}
+          </option>
+        {% endfor %}
       </select>
     </div>
     <div class="col-md-6 col-12 mb-4">
       <label for="linkedin" class="form-label">Linkedin</label>
-      <input type="text" class="form-control" id="linkedin" placeholder="Digite o seu linkedin" />
+      <input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="Digite o seu linkedin" value="{{ resume.linkedin|default_if_none:'' }}" />
     </div>
     <div class="col-lg-3 col-md-6 col-12 mb-4">
       <label for="state" class="form-label">Estado *</label>
-      <select id="state" class="form-select" aria-label="Escolha o estado" required>
-        <option selected disabled>Escolha o estado</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <select id="state" name="state" class="form-select" aria-label="Escolha o estado" required>
+        <option {% if not resume.state %} selected {% endif %} disabled>Escolha o estado</option>
+        {% for state in states %}
+          <option value="{{ state.id }}" {% if state.id == resume.state.id %} selected {% endif %}>
+            {{ state.name }}
+          </option>
+        {% endfor %}
       </select>
     </div>
     <div class="col-lg-3 col-md-6 col-12 mb-4">
       <label for="city" class="form-label">Cidade *</label>
-      <select id="city" class="form-select" aria-label="Escolha a cidade" required>
-        <option selected disabled>Escolha a cidade</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <select id="city" name="city" class="form-select" aria-label="Escolha a cidade" disabled required>
+        <option {% if not resume.city %} selected {% endif %} disabled>Escolha a cidade</option>
       </select>
     </div>
     <div class="col-md-6 col-12 mb-4">
       <label for="areaOfInterest" class="form-label">Área de interesse *</label>
-      <select id="areaOfInterest" class="form-select" aria-label="Escolha uma área de interesse" required>
-        <option selected disabled>Escolha uma área de interesse</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <select id="areaOfInterest" name="area_of_interest" class="form-select" aria-label="Escolha uma área de interesse" required>
+        <option {% if not resume.area_of_interest %} selected {% endif %} disabled>Escolha uma área de interesse</option>
+        {% for area_of_interest in area_of_interests %}
+          <option value="{{ area_of_interest.id }}" {% if area_of_interest.id == resume.area_of_interest.id %} selected {% endif %}>
+            {{ area_of_interest.name }}
+          </option>
+        {% endfor %}
       </select>
     </div>
 
-    <hr class="dash mb-4" />
+    <hr class="default mb-4" />
 
     <h2 class="card-sub-title mb-3">Experiência profissional</h2>
 
     <div class="col-12 mb-4 d-flex align-items-center">
-      <input class="form-check-input mt-0" type="checkbox" value="" id="hasWorkExperience" />
+      <input class="form-check-input mt-0" type="checkbox" {% if has_work_experience %}checked{% endif %}
+      value="true" name="has_work_experience" id="hasWorkExperience" />
       <label class="form-check-label px-2" for="hasWorkExperience">Possuo experiência profissional</label>
     </div>
 
-    <div class="col-md-6 col-12 mb-4">
-      <label for="jobTitle" class="form-label">Cargo *</label>
-      <select id="jobTitle" class="form-select" aria-label="Escolha um cargo" required>
-        <option selected disabled>Escolha um cargo</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-    </div>
+    <input type="hidden" id="validWorkIndexes" name="valid_work_indexes" value="{{ valid_indexes }}">
 
-    <div class="col-md-6 col-12 mb-4">
-      <label for="company" class="form-label">Empresa *</label>
-      <input type="text" class="form-control" id="company" placeholder="Digite o nome da empresa" required />
-    </div>
+    {% if not work_experiences.exists %}
+      <div id="workExperienceFields-0" class="row mb-3" style="display: {% if not has_work_experience %} none {% else %} flex {% endif %}">
 
-    <div class="col-md-4 col-12 mb-4 d-flex align-items-center">
-      <input class="form-check-input mt-0" type="checkbox" value="" id="actualJob" />
-      <label class="form-check-label px-2" for="actualJob">Atualmente trabalho aqui</label>
-    </div>
+        <div class="col-md-6 col-12 mb-4">
+          <label for="job_title-0" class="form-label">Cargo *</label>
+          <select id="job_title-0" name="job_title-0" class="form-select" aria-label="Escolha um cargo">
+            <option {% if not resume.job_title %} selected {% endif %} disabled>Escolha um cargo</option>
+            {% for job_title in job_titles %}
+              <option value="{{ job_title.id }}" {% if job_title.id == resume.job_title.id %} selected {% endif %}>
+                {{ job_title.title }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
 
-    <div class="col-md-4 col-12 mb-4">
-      <label for="workStartDate" class="form-label">De *</label>
-      <input type="date" class="form-control" id="workStartDate" placeholder="De" required />
-    </div>
+        <div class="col-md-6 col-12 mb-4">
+          <label for="company-0" class="form-label">Empresa *</label>
+          <input type="text" class="form-control" id="company-0" name="company-0" placeholder="Digite o nome da empresa" />
+        </div>
 
-    <div class="col-md-4 col-12 mb-4">
-      <label for="workEndDate" class="form-label">Até</label>
-      <input type="date" class="form-control" id="workEndDate" placeholder="Até" required />
-    </div>
+        <div class="col-md-4 col-12 mb-4 d-flex align-items-center">
+          <input class="form-check-input mt-0" type="checkbox" value="" id="actual_job-0" name="actual_job-0" />
+          <label class="form-check-label px-2" for="actual_job-0">Atualmente trabalho aqui</label>
+        </div>
 
-    <div class="col-12 mb-4">
-      <label for="description" class="form-label">Principais responsabilidades do cargo *</label>
-      <textarea class="form-control" style="max-height: 280px; overflow-y: auto;" id="description" rows="3" placeholder="Digite as suas responsabilidades" required></textarea>
-    </div>
+        <div class="col-md-4 col-12 mb-4">
+          <label for="work_start_date-0" class="form-label">De *</label>
+          <input type="date" class="form-control" id="work_start_date-0" name="work_start_date-0" placeholder="De" />
+        </div>
 
-    <button type="button" class="btn btn-link text-start mb-4">Incluir mais uma experiência</button>
+        <div class="col-md-4 col-12 mb-4">
+          <label for="work_end_date-0" class="form-label">Até</label>
+          <input type="date" class="form-control" id="work_end_date-0" name="work_end_date-0" placeholder="Até" />
+        </div>
 
-    <hr class="dash mb-4" />
+        <div class="col-12 mb-4">
+          <label for="description-0" class="form-label">Principais responsabilidades do cargo *</label>
+          <textarea class="form-control" style="max-height: 280px; overflow-y: auto;" id="description-0" name="description-0" rows="3" placeholder="Digite as suas responsabilidades"></textarea>
+        </div>
+
+        <button type="button" class="btn btn-danger mb-2 col-3 remove-experience-btn" data-experience-id="0">Remover</button>
+
+      </div>
+
+      <hr class="dash mb-4">
+
+    {% else %}
+      {% for work_experience in work_experiences.all %}
+        <div id="workExperienceFields-{{ work_experience.id }}" class="row mb-3" style="display: {% if not has_work_experience %} none {% else %} flex {% endif %}">
+
+          <input type="hidden" name="work_experience_id-{{ work_experience.id }}" value="{{ work_experience.id }}">
+
+          <div class="col-md-6 col-12 mb-4">
+            <label for="job_title-{{ work_experience.id }}" class="form-label">Cargo *</label>
+            <select id="job_title-{{ work_experience.id }}" name="job_title-{{ work_experience.id }}" class="form-select" aria-label="Escolha um cargo">
+              <option {% if not resume.job_title %} selected {% endif %} disabled>Escolha um cargo</option>
+              {% for job_title in job_titles %}
+                <option value="{{ job_title.id }}" {% if job_title.id == work_experience.job_title.id %} selected {% endif %}>
+                  {{ job_title.title }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col-md-6 col-12 mb-4">
+            <label for="company-{{ work_experience.id }}" class="form-label">Empresa *</label>
+            <input type="text" class="form-control" id="company-{{ work_experience.id }}" name="company-{{ work_experience.id }}"
+            value="{{ work_experience.company }}" placeholder="Digite o nome da empresa" />
+          </div>
+
+          <div class="col-md-4 col-12 mb-4 d-flex align-items-center">
+            <input class="form-check-input mt-{{ work_experience.id }}" type="checkbox"
+            {% if not work_experience.end_date %}checked{% endif %} value="true" id="actual_job-{{ work_experience.id }}"
+            name="actual_job-{{ work_experience.id }}" />
+            <label class="form-check-label px-2" for="actual_job-{{ work_experience.id }}">Atualmente trabalho aqui</label>
+          </div>
+
+          <div class="col-md-4 col-12 mb-4">
+            <label for="work_start_date-{{ work_experience.id }}" class="form-label">De *</label>
+            <input type="date" class="form-control" id="work_start_date-{{ work_experience.id }}"
+            name="work_start_date-{{ work_experience.id }}" value="{{ work_experience.start_date|date:'Y-m-d' }}" placeholder="De" />
+          </div>
+
+          <div class="col-md-4 col-12 mb-4">
+            <label for="work_end_date-{{ work_experience.id }}" class="form-label">Até</label>
+            <input type="date" class="form-control" id="work_end_date-{{ work_experience.id }}"
+            name="work_end_date-{{ work_experience.id }}" value="{{ work_experience.end_date|default_if_none:''|date:'Y-m-d' }}" placeholder="Até" />
+          </div>
+
+          <div class="col-12 mb-4">
+            <label for="description-{{ work_experience.id }}" class="form-label">Principais responsabilidades do cargo *</label>
+            <textarea class="form-control" style="max-height: 280px; overflow-y: auto;"
+            id="description-{{ work_experience.id }}" name="description-{{ work_experience.id }}"
+            rows="3" placeholder="Digite as suas responsabilidades">{{ work_experience.description }}</textarea>
+          </div>
+
+          <button type="button" class="btn btn-danger mb-2 col-3 remove-experience-btn" data-experience-id="{{ work_experience.id }}">Remover</button>
+
+        </div>
+
+        <hr class="dash mb-4">
+      {% endfor %}
+    {% endif %}
+
+    <button type="button" id="addExperienceBtn" class="btn btn-link text-start mb-4" style="display: {% if not has_work_experience %} none {% else %} flex {% endif %}">
+      Incluir mais uma experiência
+    </button>
+
+    {% comment %}
+    <hr class="default mb-4" />
 
     <h2 class="card-sub-title mb-3">Formação acadêmica</h2>
 
     <div class="col-12 mb-4">
       <label for="educationLevel" class="form-label">Grau de escolaridade *</label>
-      <select id="educationLevel" class="form-select" aria-label="Escolha o grau de escolaridade" required>
-        <option selected disabled>Escolha o grau de escolaridade</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <select id="educationLevel" name="education_level" class="form-select" aria-label="Escolha o grau de escolaridade" required>
+        <option {% if not resume.education_level %} selected {% endif %} disabled>Escolha o grau de escolaridade</option>
+        {% for education_level in education_levels %}
+        <option value="{{ education_level.id }}" {% if education_level.id == resume.education_level.id %} selected {% endif %}>
+          {{ education_level.name }}
+        </option>
+        {% endfor %}
       </select>
     </div>
 
-    <div class="col-md-6 col-12 mb-4">
-      <label for="course" class="form-label">Curso *</label>
-      <select id="course" class="form-select" aria-label="Escolha um curso" required>
-        <option selected disabled>Escolha um curso</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
+    <div id="educationFields" class="row mb-3">
+      <div class="col-md-6 col-12 mb-4">
+        <label for="degree" class="form-label">Grau do curso *</label>
+        <select id="degree" name="degree" class="form-select degree-select" data-degree-id="0" aria-label="Escolha um grau curso" required>
+          <option {% if not resume.education_level %} selected {% endif %} disabled>Escolha um grau do curso</option>
+          {% for key, value in DEGREE_TYPES %}
+            <option value="{{ key }}">{{ value }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-md-6 col-12 mb-4">
+        <label for="course" class="form-label">Curso</label>
+        <select id="course" name="course" class="form-select" aria-label="Escolha um curso" disabled>
+        </select>
+      </div>
+
+      <div class="col-12 mb-4">
+        <label for="institution" class="form-label">Instituição *</label>
+        <input type="text" class="form-control" id="institution" name="institution" placeholder="Digite o nome da instituição" required />
+      </div>
+
+      <div class="col-md-4 col-12 mb-4 d-flex align-items-center">
+        <input class="form-check-input mt-0" type="checkbox" value="" id="actualJob" />
+        <label class="form-check-label px-2" for="actualCourse">Atualmente estudo aqui</label>
+      </div>
+
+      <div class="col-md-4 col-12 mb-4">
+        <label for="courseStartDate" class="form-label">De *</label>
+        <input type="date" class="form-control" id="courseStartDate" name="course_start_date" placeholder="De" required />
+      </div>
+
+      <div class="col-md-4 col-12 mb-4">
+        <label for="courseEndDate" class="form-label">Até</label>
+        <input type="date" class="form-control" id="courseEndDate" name="course_end_date" placeholder="Até" required />
+      </div>
     </div>
 
-    <div class="col-md-6 col-12 mb-4">
-      <label for="institution" class="form-label">Instituição *</label>
-      <input type="text" class="form-control" id="institution" placeholder="Digite o nome da instituição" required />
-    </div>
+    <button type="button" id="addEducationBtn" class="btn btn-link text-start mb-4">Incluir mais uma formação</button>
 
-    <div class="col-md-4 col-12 mb-4 d-flex align-items-center">
-      <input class="form-check-input mt-0" type="checkbox" value="" id="actualJob" />
-      <label class="form-check-label px-2" for="actualCourse">Atualmente estudo aqui</label>
-    </div>
-
-    <div class="col-md-4 col-12 mb-4">
-      <label for="courseStartDate" class="form-label">De *</label>
-      <input type="date" class="form-control" id="courseStartDate" placeholder="De" required />
-    </div>
-
-    <div class="col-md-4 col-12 mb-4">
-      <label for="courseEndDate" class="form-label">Até</label>
-      <input type="date" class="form-control" id="courseEndDate" placeholder="Até" required />
-    </div>
-
-    <button type="button" class="btn btn-link text-start mb-4">Incluir mais uma formação</button>
-
-    <hr class="dash mb-4" />
+    <hr class="default mb-4" />
 
     <h2 class="card-sub-title mb-3">Habilidades profissionais</h2>
 
     <div class="col-md-6 col-12 mb-4">
-      <label for="course" class="form-label">Habilidades técnicas</label>
-      <select id="course" class="form-select mb-3" aria-label="Escolha habilidades que possui">
-        <option selected disabled>Escolha habilidades que possui</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
+      <div id="technicalSkillsField">
+        <label for="technical_skill" class="form-label">Habilidades técnicas</label>
+        <select id="technical_skill" class="form-select mb-3" aria-label="Escolha habilidades que possui">
+          <option {% if not professional_skills %} selected {% endif %} disabled>Escolha habilidades que possui</option>
+          {% for technical_skill in technical_skills %}
+          <option value="{{ technical_skill.id }}" {% if technical_skill.id == resume.technical_skill.id %} selected {% endif %}>
+            {{ technical_skill.name }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
 
-      <button type="button" class="btn btn-link d-block text-start">Incluir mais uma habilidade técnica</button>
+      <button id="addTechnicalSkillBtn" type="button" class="btn btn-link d-block text-start">Incluir mais uma habilidade técnica</button>
     </div>
 
     <div class="col-md-6 col-12 mb-4">
-      <label for="course" class="form-label">Idiomas</label>
-      <select id="course" class="form-select mb-2" aria-label="Escolha um idioma">
-        <option selected disabled>Escolha um idioma</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
+      <div id="languageSkillsFields">
+        <label for="language" class="form-label">Idiomas</label>
+        <select id="language" name="language" class="form-select mb-2" aria-label="Escolha um idioma">
+          <option {% if not language_skills %} selected {% endif %} disabled>Escolha um idioma</option>
+          {% for language in languages %}
+          <option value="{{ language.id }}" {% if language.id == resume.language.id %} selected {% endif %}>
+            {{ language.name }}
+          </option>
+          {% endfor %}
+        </select>
 
-      <div class="form-check form-check-inline mb-3">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="level1" value="option1" />
-        <label class="form-check-label" for="level1">Básico</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="level2" value="option2" />
-        <label class="form-check-label" for="level2">Intermediário</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="level3" value="option3" />
-        <label class="form-check-label" for="level3">Avançado</label>
+        <div class="form-check form-check-inline mb-3">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="basic" value="basic" />
+          <label class="form-check-label" for="basic">Básico</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="intermediate" value="intermediate" />
+          <label class="form-check-label" for="intermediate">Intermediário</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="advanced" value="advanced" />
+          <label class="form-check-label" for="advanced">Avançado</label>
+        </div>
       </div>
 
-      <button type="button" class="btn btn-link d-block text-start">Incluir mais um idioma</button>
-    </div>
+      <button type="button" id="addLanguageSkillBtn" class="btn btn-link d-block text-start">Incluir mais um idioma</button>
+    </div> {% endcomment %}
 
     <div class="txt-center">
       <button type="submit" class="btn btn-primary">Cadastrar currículo</button>
     </div>
   </form>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var stateSelect = document.getElementById("state");
+    var citySelect = document.getElementById("city");
+    var selectedStateId = stateSelect.value;
+    var selectedCityId = "{{ resume.city.id }}" || "";
+
+    function populateCities(stateId) {
+      fetch(`/resumes/get_cities?state_id=${stateId}`)
+        .then(response => response.json())
+        .then(data => {
+          data.forEach(city => {
+            var option = document.createElement("option");
+            option.value = city.id;
+            option.text = city.name;
+            if (String(city.id) === selectedCityId) {
+              option.selected = true;
+            }
+            citySelect.appendChild(option);
+          });
+
+          citySelect.disabled = false;
+        })
+        .catch(error => {
+            console.error("Erro ao buscar cidades:", error);
+            citySelect.disabled = true;
+        });
+    }
+
+    stateSelect.addEventListener("change", function() {
+      var stateId = this.value;
+      var citySelect = document.getElementById("city");
+      while (citySelect.options.length > 1) {
+        citySelect.remove(1);
+      }
+
+      citySelect.disabled = true;
+
+      if (!stateId) {
+        citySelect.disabled = true;
+        return;
+      }
+
+      populateCities(stateId);
+    });
+
+    if (selectedStateId) {
+      populateCities(selectedStateId);
+    }
+
+    var checkboxes = document.querySelectorAll("[id^='actual_job-']");
+    checkboxes.forEach(function(checkbox) {
+        var index = checkbox.id.split("-")[1];
+        var endDateInput = document.getElementById('work_end_date-' + index);
+
+        checkbox.addEventListener('change', function () {
+          if (this.checked) {
+            endDateInput.disabled = true;
+            endDateInput.required = false;
+            endDateInput.value = '';
+          } else {
+            endDateInput.disabled = false;
+            endDateInput.required = true;
+          }
+        });
+
+        if (checkbox.checked) {
+          endDateInput.disabled = true;
+          endDateInput.required = false;
+        } else {
+          endDateInput.disabled = false;
+          endDateInput.required = true;
+        }
+    });
+
+    var validIndexes = Array.from(document.querySelectorAll("[id^='workExperienceFields-']")).map(function(field) {
+      return field.id.split("-")[1];
+    });
+
+    if (validIndexes.length && validIndexes.includes("0")) {
+      validIndexes = validIndexes.filter(index => index !== "0");
+    }
+
+    document.getElementById("validWorkIndexes").value = JSON.stringify(validIndexes);
+
+    var experienceIndex = validIndexes.length;
+
+    var removeButtons = document.querySelectorAll('.remove-experience-btn');
+    removeButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        var experienceId = button.getAttribute('data-experience-id');
+        var experienceBlock = document.getElementById('workExperienceFields-' + experienceId);
+        if (experienceBlock) {
+          experienceBlock.remove();
+        }
+        var validIndexes = Array.from(document.querySelectorAll("[id^='workExperienceFields-']")).map(function(field) {
+          return field.id.split("-")[1];
+        });
+        document.getElementById("validWorkIndexes").value = JSON.stringify(validIndexes);
+      });
+    });
+
+    document.getElementById('addExperienceBtn').addEventListener('click', function() {
+      function updateIndexes() {
+        var validIndexes = Array.from(document.querySelectorAll("[id^='workExperienceFields-']")).map(function(field) {
+          return field.id.split("-")[1];
+        });
+        document.getElementById("validWorkIndexes").value = JSON.stringify(validIndexes);
+      }
+
+      function removeField(index) {
+        var field = document.getElementById("workExperienceFields-" + index);
+        if (field) {
+          field.remove();
+          updateIndexes();
+        }
+      }
+
+      var clonedFields = document.querySelector("[id^='workExperienceFields']");
+      if (!clonedFields) return;
+      clonedFields = clonedFields.cloneNode(true);
+
+      var index = ++experienceIndex;
+
+      var inputs = clonedFields.querySelectorAll('input, select, textarea');
+      inputs.forEach(function(input) {
+        var name = input.getAttribute('name');
+        var id = input.getAttribute('id');
+
+        if (name) {
+          name = name.split("-")[0];
+          input.setAttribute('name', name + '-' + index);
+        }
+
+        if (id) {
+          id = id.split("-")[0];
+          input.setAttribute('id', id + '-' + index);
+        }
+
+        input.value = '';
+      });
+
+      var labels = clonedFields.querySelectorAll('label');
+      labels.forEach(function(label) {
+          var forAttribute = label.getAttribute('for');
+          if (forAttribute) {
+            forAttribute = forAttribute.split("-")[0];
+            label.setAttribute('for', forAttribute + '-' + index);
+          }
+      });
+
+      var buttons = clonedFields.querySelectorAll('button');
+      buttons.forEach(function(button) {
+        if (button.hasAttribute('data-experience-id')) {
+          button.setAttribute('data-experience-id', index);
+          button.addEventListener('click', function() {
+            var indexToRemove = this.getAttribute('data-experience-id');
+            removeField(indexToRemove);
+          });
+        }
+      });
+
+      var checkbox = clonedFields.querySelector("#actual_job-" + index);
+      var endDateInput = clonedFields.querySelector("#work_end_date-" + index);
+
+      checkbox.addEventListener('change', function () {
+        if (this.checked) {
+          endDateInput.disabled = true;
+          endDateInput.required = false;
+          endDateInput.value = '';
+        } else {
+          endDateInput.disabled = false;
+          endDateInput.required = true;
+        }
+      });
+
+      var firstChild = clonedFields.firstChild;
+      var divider = document.createElement('hr');
+      divider.classList.add('dash','mt-4');
+      clonedFields.appendChild(divider);
+
+      clonedFields.setAttribute('id', 'workExperienceFields-' + index);
+
+      var addExperienceBtn = document.getElementById('addExperienceBtn');
+      addExperienceBtn.parentNode.insertBefore(clonedFields, addExperienceBtn);
+      updateIndexes();
+    });
+  });
+
+  document.getElementById("hasWorkExperience").addEventListener("change", function() {
+    var workExperienceFields = document.querySelectorAll("[id^='workExperienceFields']");
+    var addExperienceBtn = document.getElementById("addExperienceBtn");
+    if (this.checked) {
+      workExperienceFields.forEach(function(field) {
+          field.style.display = "flex";
+      });
+      addExperienceBtn.style.display = "flex";
+      document.querySelectorAll("[id^='job_title']").forEach(function(elem) {
+          elem.required = true;
+      });
+      document.querySelectorAll("[id^='company']").forEach(function(elem) {
+          elem.required = true;
+      });
+      document.querySelectorAll("[id^='work_start_date']").forEach(function(elem) {
+          elem.required = true;
+      });
+      document.querySelectorAll("[id^='description']").forEach(function(elem) {
+          elem.required = true;
+      });
+
+      var validIndexes = Array.from(document.querySelectorAll("[id^='workExperienceFields-']")).map(function(field) {
+        return field.id.split("-")[1];
+      });
+      document.getElementById("validWorkIndexes").value = JSON.stringify(validIndexes);
+    } else {
+      workExperienceFields.forEach(function(field) {
+          field.style.display = "none";
+      });
+      addExperienceBtn.style.display = "none";
+      document.querySelectorAll("[id^='job_title']").forEach(function(elem) {
+          elem.required = false;
+      });
+      document.querySelectorAll("[id^='company']").forEach(function(elem) {
+          elem.required = false;
+      });
+      document.querySelectorAll("[id^='work_start_date']").forEach(function(elem) {
+          elem.required = false;
+      });
+      document.querySelectorAll("[id^='work_end_date']").forEach(function(elem) {
+          elem.required = false;
+      });
+      document.querySelectorAll("[id^='description']").forEach(function(elem) {
+          elem.required = false;
+      });
+      document.getElementById("validWorkIndexes").value = JSON.stringify([]);
+    }
+  });
+
+  {% comment %}
+  document.getElementById('addEducationBtn').addEventListener('click', function() {
+    var clonedFields = document.getElementById('educationFields').cloneNode(true);
+
+    var inputs = clonedFields.querySelectorAll('input, select, textarea');
+    var index = document.querySelectorAll('.new-education').length + 1;
+
+    inputs.forEach(function(input) {
+      var name = input.getAttribute('name');
+      var id = input.getAttribute('id');
+
+      if (name) {
+          input.setAttribute('name', name + '-' + index);
+      }
+
+      if (id) {
+          input.setAttribute('id', id + '-' + index);
+      }
+
+      input.value = '';
+    });
+
+    var labels = clonedFields.querySelectorAll('label');
+    labels.forEach(function(label) {
+        var forAttribute = label.getAttribute('for');
+        if (forAttribute) {
+            label.setAttribute('for', forAttribute + '-' + index);
+        }
+    });
+
+    var degreeSelect = clonedFields.querySelector('.degree-select');
+    if (degreeSelect) {
+      var degreeId = degreeSelect.getAttribute('data-degree-id');
+      degreeSelect.setAttribute('data-degree-id', index);
+    }
+
+    var removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.classList.add('btn', 'btn-danger', 'mb-2', 'col-3');
+    removeBtn.textContent = 'Remover';
+    removeBtn.addEventListener('click', function() {
+        clonedFields.remove();
+    });
+    clonedFields.appendChild(removeBtn);
+
+    var firstChild = clonedFields.firstChild;
+    var divider = document.createElement('hr');
+    divider.classList.add('dash','mb-4');
+    clonedFields.insertBefore(divider, firstChild);
+
+    clonedFields.classList.add('new-education');
+    clonedFields.setAttribute('id', 'educationFields-' + index);
+
+    var addEducationBtn = document.getElementById('addEducationBtn');
+    addEducationBtn.parentNode.insertBefore(clonedFields, addEducationBtn);
+  });
+
+  document.getElementById('addTechnicalSkillBtn').addEventListener('click', function() {
+    var clonedFields = document.getElementById('technicalSkillsField').cloneNode(true);
+
+    var inputs = clonedFields.querySelectorAll('input, select, textarea');
+    var index = document.querySelectorAll('.new-tech-skill').length + 1;
+
+    inputs.forEach(function(input) {
+      var name = input.getAttribute('name');
+      var id = input.getAttribute('id');
+
+      if (name) {
+          input.setAttribute('name', name + '-' + index);
+      }
+
+      if (id) {
+          input.setAttribute('id', id + '-' + index);
+      }
+
+      input.value = '';
+    });
+
+    var labels = clonedFields.querySelectorAll('label');
+    labels.forEach(function(label) {
+        var forAttribute = label.getAttribute('for');
+        if (forAttribute) {
+            label.setAttribute('for', forAttribute + '-' + index);
+        }
+    });
+
+    var removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.classList.add('btn', 'btn-danger', 'mb-4', 'col-4');
+    removeBtn.textContent = 'Remover';
+    removeBtn.addEventListener('click', function() {
+        clonedFields.remove();
+    });
+    clonedFields.appendChild(removeBtn);
+
+    var firstChild = clonedFields.firstChild;
+    var divider = document.createElement('hr');
+    divider.classList.add('dash','mb-4');
+    clonedFields.insertBefore(divider, firstChild);
+
+    clonedFields.classList.add('new-tech-skill');
+    clonedFields.setAttribute('id', 'technicalSkillsField-' + index);
+
+    var addTechnicalSkillBtn = document.getElementById('addTechnicalSkillBtn');
+    addTechnicalSkillBtn.parentNode.insertBefore(clonedFields, addTechnicalSkillBtn);
+  });
+
+  document.getElementById('addLanguageSkillBtn').addEventListener('click', function() {
+    var clonedFields = document.getElementById('languageSkillsFields').cloneNode(true);
+
+    var inputs = clonedFields.querySelectorAll('input, select, textarea');
+    var index = document.querySelectorAll('.new-language-skill').length + 1;
+
+    inputs.forEach(function(input) {
+      var name = input.getAttribute('name');
+      var id = input.getAttribute('id');
+
+      if (name) {
+          input.setAttribute('name', name + '-' + index);
+      }
+
+      if (id) {
+          input.setAttribute('id', id + '-' + index);
+      }
+
+      input.value = '';
+    });
+
+    var labels = clonedFields.querySelectorAll('label');
+    labels.forEach(function(label) {
+        var forAttribute = label.getAttribute('for');
+        if (forAttribute) {
+            label.setAttribute('for', forAttribute + '-' + index);
+        }
+    });
+
+    var removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.classList.add('btn', 'btn-danger', 'mb-4', 'col-4');
+    removeBtn.textContent = 'Remover';
+    removeBtn.addEventListener('click', function() {
+        clonedFields.remove();
+    });
+    clonedFields.appendChild(removeBtn);
+
+    var firstChild = clonedFields.firstChild;
+    var divider = document.createElement('hr');
+    divider.classList.add('dash','mb-4');
+    clonedFields.insertBefore(divider, firstChild);
+
+    clonedFields.classList.add('new-language-skill');
+    clonedFields.setAttribute('id', 'languageSkillsFields-' + index);
+
+    var addLanguageSkillBtn = document.getElementById('addLanguageSkillBtn');
+    addLanguageSkillBtn.parentNode.insertBefore(clonedFields, addLanguageSkillBtn);
+  });
+
+  document.addEventListener('change', function(event) {
+    if (event.target.classList.contains('degree-select')) {
+      var degreeId = event.target.getAttribute('data-degree-id');
+      var courseSelect = !Number(degreeId) ? document.getElementById('course') : document.getElementById('course-' + degreeId);
+
+      var selectedDegree = event.target.value;
+      var technicalCourses = JSON.parse('{{ technical_courses | escapejs }}');
+      var higherEducationCourses = JSON.parse('{{ higher_education_courses | escapejs }}');
+
+      function addOptionsToSelect(courses) {
+        courses.forEach(function(course) {
+          var option = new Option(course.name, course.id);
+          courseSelect.add(option);
+        });
+      }
+
+      if (selectedDegree === 'elementary' || selectedDegree === 'high_school') {
+        courseSelect.innerHTML = '';
+        courseSelect.disabled = true;
+        courseSelect.removeAttribute('required');
+      } else {
+        courseSelect.innerHTML = '';
+
+        var defaultOption = document.createElement('option');
+        defaultOption.text = 'Escolha um curso';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        courseSelect.add(defaultOption);
+
+        if (selectedDegree === 'technical') {
+          addOptionsToSelect(technicalCourses);
+        } else if (selectedDegree === 'bachelor' || selectedDegree === 'teaching' || selectedDegree === 'technologist' || selectedDegree === 'master' || selectedDegree === 'doctorate' || selectedDegree === 'post_doctorate') {
+          addOptionsToSelect(higherEducationCourses);
+        }
+
+        courseSelect.disabled = false;
+        courseSelect.setAttribute('required', 'required');
+      }
+    }
+  }); {% endcomment %}
+
+</script>
 {% endblock %}

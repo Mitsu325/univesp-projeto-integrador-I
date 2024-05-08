@@ -68,6 +68,10 @@ main {
   font-size: 14px;
 }
 
+hr.default {
+  border: 2px solid #b5b5b5;
+}
+
 hr.dash {
   border: 1px dashed #b5b5b5;
 }
