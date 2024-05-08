@@ -44,7 +44,9 @@
         {% for work_experience in work_experiences.all %}
           <h3 class="card-resume-sub-title">{{ work_experience.job_title.title }}, {{ work_experience.company }}</h3>
           <ul class="resume-info mb-2">
-            <li>Período: {{ work_experience.start_date }} - {{ work_experience.end_date|default_if_none:'Presente' }}</li>
+            <li>
+              Período: {{ work_experience.start_date|date:'Y-m-d' }} - {{ work_experience.end_date|date:'Y-m-d' }} {% if not work_experience.end_date %}Presente{% endif %}
+            </li>
             <li>Responsabilidades: {{ work_experience.description }}</li>
           </ul>
         {% endfor %}
