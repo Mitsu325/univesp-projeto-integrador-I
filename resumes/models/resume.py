@@ -13,13 +13,13 @@ class Resume(models.Model):
     date_of_birth = models.DateField()
     telephone = models.CharField(max_length=15, null=True)
     linkedin = models.CharField(max_length=50, null=True)
-    area_of_interest = models.OneToOneField(
+    area_of_interest = models.ForeignKey(
         AreaOfInterest, on_delete=models.SET_NULL, null=True
     )
-    gender = models.OneToOneField(Gender, on_delete=models.SET_NULL, null=True)
-    state = models.OneToOneField(State, on_delete=models.SET_NULL, null=True)
-    city = models.OneToOneField(City, on_delete=models.SET_NULL, null=True)
-    education_level = models.OneToOneField(
+    gender = models.ForeignKey(Gender, on_delete=models.SET_NULL, null=True)
+    state = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
+    city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True)
+    education_level = models.ForeignKey(
         EducationLevel, on_delete=models.SET_NULL, null=True
     )
     created_at = models.DateTimeField(auto_now_add=True)
