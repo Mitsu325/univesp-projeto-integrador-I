@@ -6,6 +6,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://sstires.com.br/wp-content/uploads/2022/09/cropped-SS-Tires_favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="https://sstires.com.br/wp-content/uploads/2022/09/cropped-SS-Tires_favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://sstires.com.br/wp-content/uploads/2022/09/cropped-SS-Tires_favicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="https://sstires.com.br/wp-content/uploads/2022/09/cropped-SS-Tires_favicon-270x270.png" />
     <title>SS Tires - Gestão de currículo</title>
     <meta name="description" content="Gestão de curriculo - login" />
     {% load bootstrap5 %}
@@ -24,14 +28,14 @@
     <main>
       <div class="row">
         <div class="col-md-6">
-          <h1 class="title-managers mb-3">Bem-vindo à nossa plataforma de Gestão de Currículos!</h1>
+          <h1 class="title-managers my-5">Bem-vindo à nossa plataforma de Gestão de Currículos!</h1>
           <p class="description mb-4">Simplifique seu processo de recrutamento e gerencie currículos de forma eficiente. Faça login agora para começar.</p>
           <div class="d-flex justify-content-center">
             <img src="{% static 'image/profiles.svg' %}" class="profile-img" alt="" />
           </div>
         </div>
         <div class="col-md-6 d-flex align-items-center justify-content-center">
-          <div class="card">
+          <div class="card mt-5">
             <h2 class="card-title mb-3">Acessar</h2>
             {% if messages %}
               {% for message in messages %}
