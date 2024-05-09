@@ -11,9 +11,9 @@ class Language(models.Model):
 
 class LanguageSkill(models.Model):
     LEVEL_TYPES = (
-        ("basic", "Basic"),
-        ("intermediate", "Intermediate"),
-        ("advanced", "Advanced"),
+        ("basic", "Básico"),
+        ("intermediate", "Intermediário"),
+        ("advanced", "Avançado"),
     )
     resume = models.ForeignKey(
         Resume, on_delete=models.CASCADE, related_name="language_skills"

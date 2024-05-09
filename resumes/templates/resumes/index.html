@@ -75,16 +75,19 @@
       <div class="col-lg-6 col-12 mb-4">
         <h2 class="card-sub-title mb-3">Habilidades técnicas</h2>
         <ul class="resume-info">
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>React</li>
+          {% if not professional_skills %} Não possui habilidades técnicas cadastradas {% endif %}
+          {% for professional_skill in professional_skills.all %}
+            <li>{{ professional_skill.technical_skill.name }}</li>
+          {% endfor %}
         </ul>
       </div>
       <div class="col-lg-6 col-12 mb-4">
         <h2 class="card-sub-title mb-3">Idiomas</h2>
         <ul class="resume-info">
-          <li>Inglês (nativo)</li>
+          {% if not language_skills %} Não possui idiomas cadastrados {% endif %}
+          {% for language_skill in language_skills.all %}
+            <li>{{ language_skill.language.name }} ({{ language_skill.get_level_display }})</li>
+          {% endfor %}
         </ul>
       </div>
     </div>

@@ -336,7 +336,6 @@
 
     <button type="button" id="addEducationBtn" class="btn btn-link text-start mb-5">Incluir mais uma formação</button>
 
-    {% comment %}
     <hr class="default mb-4" />
 
     <h2 class="card-sub-title mb-3">Habilidades profissionais</h2>
@@ -384,7 +383,7 @@
       </div>
 
       <button type="button" id="addLanguageSkillBtn" class="btn btn-link d-block text-start">Incluir mais um idioma</button>
-    </div> {% endcomment %}
+    </div>
 
     <div class="txt-center">
       <button type="submit" class="btn btn-primary">Cadastrar currículo</button>
@@ -825,7 +824,6 @@
     }
   });
 
-  {% comment %}
   document.getElementById('addTechnicalSkillBtn').addEventListener('click', function() {
     var clonedFields = document.getElementById('technicalSkillsField').cloneNode(true);
 
@@ -925,7 +923,6 @@
     var addLanguageSkillBtn = document.getElementById('addLanguageSkillBtn');
     addLanguageSkillBtn.parentNode.insertBefore(clonedFields, addLanguageSkillBtn);
   });
-  {% endcomment %}
 
   document.addEventListener('change', function(event) {
     if (event.target.classList.contains('degree-select')) {

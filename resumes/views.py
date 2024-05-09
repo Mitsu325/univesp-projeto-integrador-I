@@ -18,6 +18,8 @@ from .models import (
     EducationLevel,
     Education,
     Course,
+    ProfessionalSkill,
+    LanguageSkill,
 )
 from candidates.models import Candidate
 from .utils import build_edit_context
@@ -57,6 +59,20 @@ def index(request):
         except Education.DoesNotExist:
             educations = Education()
 
+    professional_skills = ProfessionalSkill()
+    if has_resume:
+        try:
+            professional_skills = ProfessionalSkill.objects.filter(resume=resume.id)
+        except ProfessionalSkill.DoesNotExist:
+            professional_skills = ProfessionalSkill()
+
+    language_skills = LanguageSkill()
+    if has_resume:
+        try:
+            language_skills = LanguageSkill.objects.filter(resume=resume.id)
+        except LanguageSkill.DoesNotExist:
+            language_skills = LanguageSkill()
+
     context = {
         "has_resume": has_resume,
         "none_value": "-",
@@ -69,6 +85,8 @@ def index(request):
         "age_in_years": age_in_years,
         "work_experiences": work_experiences,
         "educations": educations,
+        "professional_skills": professional_skills,
+        "language_skills": language_skills,
     }
     if "success_message" in request.session:
         success_message = request.session.pop("success_message")
