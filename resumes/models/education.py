@@ -29,7 +29,7 @@ class Education(models.Model):
     resume = models.ForeignKey(
         Resume, on_delete=models.CASCADE, related_name="educations"
     )
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
     institution = models.CharField(max_length=50)
     degree = models.CharField(max_length=50, choices=DEGREE_TYPES, default="other")
     start_date = models.DateField()
