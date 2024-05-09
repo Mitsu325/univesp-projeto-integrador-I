@@ -129,7 +129,7 @@
         </div>
 
         <div class="col-md-4 col-12 mb-4 d-flex align-items-center">
-          <input class="form-check-input mt-0" type="checkbox" value="" id="actual_job-0" name="actual_job-0" />
+          <input class="form-check-input mt-0" type="checkbox" value="true" id="actual_job-0" name="actual_job-0" />
           <label class="form-check-label px-2" for="actual_job-0">Atualmente trabalho aqui</label>
         </div>
 
@@ -212,11 +212,10 @@
       {% endfor %}
     {% endif %}
 
-    <button type="button" id="addExperienceBtn" class="btn btn-link text-start mb-4" style="display: {% if not has_work_experience %} none {% else %} flex {% endif %}">
+    <button type="button" id="addExperienceBtn" class="btn btn-link text-start mb-5" style="display: {% if not has_work_experience %} none {% else %} flex {% endif %}">
       Incluir mais uma experiência
     </button>
 
-    {% comment %}
     <hr class="default mb-4" />
 
     <h2 class="card-sub-title mb-3">Formação acadêmica</h2>
@@ -233,46 +232,111 @@
       </select>
     </div>
 
-    <div id="educationFields" class="row mb-3">
-      <div class="col-md-6 col-12 mb-4">
-        <label for="degree" class="form-label">Grau do curso *</label>
-        <select id="degree" name="degree" class="form-select degree-select" data-degree-id="0" aria-label="Escolha um grau curso" required>
-          <option {% if not resume.education_level %} selected {% endif %} disabled>Escolha um grau do curso</option>
-          {% for key, value in DEGREE_TYPES %}
-            <option value="{{ key }}">{{ value }}</option>
-          {% endfor %}
-        </select>
+    <input type="hidden" id="validEducationIndexes" name="valid_education_indexes" value="{{ valid_indexes }}">
+
+    {% if not educations.exists %}
+      <div id="educationFields-0" class="row mb-3">
+        <div class="col-md-6 col-12 mb-4">
+          <label for="degree-0" class="form-label">Grau do curso *</label>
+          <select id="degree-0" name="degree-0" class="form-select degree-select" data-degree-id="0" aria-label="Escolha um grau curso" required>
+            <option {% if not resume.education_level %} selected {% endif %} disabled>Escolha um grau do curso</option>
+            {% for key, value in DEGREE_TYPES %}
+              <option value="{{ key }}">{{ value }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-6 col-12 mb-4">
+          <label for="course-0" class="form-label">Curso</label>
+          <select id="course-0" name="course-0" class="form-select" aria-label="Escolha um curso" disabled>
+          </select>
+        </div>
+
+        <div class="col-12 mb-4">
+          <label for="institution-0" class="form-label">Instituição *</label>
+          <input type="text" class="form-control" id="institution-0" name="institution-0" placeholder="Digite o nome da instituição" required />
+        </div>
+
+        <div class="col-md-4 col-12 mb-4 d-flex align-items-center">
+          <input class="form-check-input mt-0" type="checkbox" value="" id="actual_course-0" name="actual_course-0" />
+          <label class="form-check-label px-2" for="actual_course-0">Atualmente estudo aqui</label>
+        </div>
+
+        <div class="col-md-4 col-12 mb-4">
+          <label for="course_start_date-0" class="form-label">De *</label>
+          <input type="date" class="form-control" id="course_start_date-0" name="course_start_date-0" placeholder="De" />
+        </div>
+
+        <div class="col-md-4 col-12 mb-4">
+          <label for="course_end_date-0" class="form-label">Até</label>
+          <input type="date" class="form-control" id="course_end_date-0" name="course_end_date-0" placeholder="Até" />
+        </div>
+
+        <button type="button" class="btn btn-danger mb-2 col-3 remove-course-btn" data-course-id="0">Remover</button>
       </div>
 
-      <div class="col-md-6 col-12 mb-4">
-        <label for="course" class="form-label">Curso</label>
-        <select id="course" name="course" class="form-select" aria-label="Escolha um curso" disabled>
-        </select>
-      </div>
+      <hr class="dash mb-4">
 
-      <div class="col-12 mb-4">
-        <label for="institution" class="form-label">Instituição *</label>
-        <input type="text" class="form-control" id="institution" name="institution" placeholder="Digite o nome da instituição" required />
-      </div>
+    {% else %}
 
-      <div class="col-md-4 col-12 mb-4 d-flex align-items-center">
-        <input class="form-check-input mt-0" type="checkbox" value="" id="actualJob" />
-        <label class="form-check-label px-2" for="actualCourse">Atualmente estudo aqui</label>
-      </div>
+      {% for education in educations.all %}
 
-      <div class="col-md-4 col-12 mb-4">
-        <label for="courseStartDate" class="form-label">De *</label>
-        <input type="date" class="form-control" id="courseStartDate" name="course_start_date" placeholder="De" required />
-      </div>
+        <input type="hidden" name="education_id-{{ education.id }}" value="{{ education.id }}">
 
-      <div class="col-md-4 col-12 mb-4">
-        <label for="courseEndDate" class="form-label">Até</label>
-        <input type="date" class="form-control" id="courseEndDate" name="course_end_date" placeholder="Até" required />
-      </div>
-    </div>
+        <div id="educationFields-{{ education.id }}" class="row mb-3">
+          <div class="col-md-6 col-12 mb-4">
+            <label for="degree-{{ education.id }}" class="form-label">Grau do curso *</label>
+            <select id="degree-{{ education.id }}" name="degree-{{ education.id }}" class="form-select degree-select" data-degree-id="{{ education.id }}" aria-label="Escolha um grau curso" required>
+              <option {% if not resume.education_level %} selected {% endif %} disabled>Escolha um grau do curso</option>
+              {% for key, value in DEGREE_TYPES %}
+                <option value="{{ key }}" {% if key == education.degree %} selected {% endif %}>{{ value }}</option>
+              {% endfor %}
+            </select>
+          </div>
 
-    <button type="button" id="addEducationBtn" class="btn btn-link text-start mb-4">Incluir mais uma formação</button>
+          <input type="hidden" id="course_id-{{ education.id }}" name="course_id-{{ education.id }}" value="{{ education.course.id }}">
 
+          <div class="col-md-6 col-12 mb-4">
+            <label for="course-{{ education.id }}" class="form-label">Curso</label>
+            <select id="course-{{ education.id }}" name="course-{{ education.id }}" class="form-select" aria-label="Escolha um curso" disabled>
+            </select>
+          </div>
+
+          <div class="col-12 mb-4">
+            <label for="institution-{{ education.id }}" class="form-label">Instituição *</label>
+            <input type="text" class="form-control" id="institution-{{ education.id }}" name="institution-{{ education.id }}" value="{{ education.institution }}" placeholder="Digite o nome da instituição" required />
+          </div>
+
+          <div class="col-md-4 col-12 mb-4 d-flex align-items-center">
+            <input class="form-check-input mt-0" type="checkbox" value="true"
+            {% if not education.end_date %}checked{% endif %}
+            id="actual_course-{{ education.id }}" name="actual_course-{{ education.id }}" />
+            <label class="form-check-label px-2" for="actual_course-{{ education.id }}">Atualmente estudo aqui</label>
+          </div>
+
+          <div class="col-md-4 col-12 mb-4">
+            <label for="course_start_date-{{ education.id }}" class="form-label">De *</label>
+            <input type="date" class="form-control" id="course_start_date-{{ education.id }}" name="course_start_date-{{ education.id }}"
+            value="{{ education.start_date|date:'Y-m-d' }}" placeholder="De" />
+          </div>
+
+          <div class="col-md-4 col-12 mb-4">
+            <label for="course_end_date-{{ education.id }}" class="form-label">Até</label>
+            <input type="date" class="form-control" id="course_end_date-{{ education.id }}" name="course_end_date-{{ education.id }}"
+            value="{{ education.end_date|default_if_none:''|date:'Y-m-d' }}" placeholder="Até" />
+          </div>
+
+          <button type="button" class="btn btn-danger mb-2 col-3 remove-course-btn" data-course-id="{{ education.id }}">Remover</button>
+        </div>
+
+        <hr class="dash mb-4">
+      {% endfor %}
+
+    {% endif %}
+
+    <button type="button" id="addEducationBtn" class="btn btn-link text-start mb-5">Incluir mais uma formação</button>
+
+    {% comment %}
     <hr class="default mb-4" />
 
     <h2 class="card-sub-title mb-3">Habilidades profissionais</h2>
@@ -379,8 +443,8 @@
       populateCities(selectedStateId);
     }
 
-    var checkboxes = document.querySelectorAll("[id^='actual_job-']");
-    checkboxes.forEach(function(checkbox) {
+    var jobCheckboxes = document.querySelectorAll("[id^='actual_job-']");
+    jobCheckboxes.forEach(function(checkbox) {
         var index = checkbox.id.split("-")[1];
         var endDateInput = document.getElementById('work_end_date-' + index);
 
@@ -404,20 +468,47 @@
         }
     });
 
-    var validIndexes = Array.from(document.querySelectorAll("[id^='workExperienceFields-']")).map(function(field) {
+    var courseCheckboxes = document.querySelectorAll("[id^='actual_course-']");
+    courseCheckboxes.forEach(function(checkbox) {
+        var index = checkbox.id.split("-")[1];
+        var endDateInput = document.getElementById('course_end_date-' + index);
+
+        checkbox.addEventListener('change', function () {
+          if (this.checked) {
+            endDateInput.disabled = true;
+            endDateInput.required = false;
+            endDateInput.value = '';
+          } else {
+            endDateInput.disabled = false;
+            endDateInput.required = true;
+          }
+        });
+
+        if (checkbox.checked) {
+          endDateInput.disabled = true;
+          endDateInput.required = false;
+        } else {
+          endDateInput.disabled = false;
+          endDateInput.required = true;
+        }
+    });
+
+
+    //* Work Experience */
+    var validExperienceIndexes = Array.from(document.querySelectorAll("[id^='workExperienceFields-']")).map(function(field) {
       return field.id.split("-")[1];
     });
 
-    if (validIndexes.length && validIndexes.includes("0")) {
-      validIndexes = validIndexes.filter(index => index !== "0");
+    if (validExperienceIndexes.length > 1 && validExperienceIndexes.includes("0")) {
+      validExperienceIndexes = validExperienceIndexes.filter(index => index !== "0");
     }
 
-    document.getElementById("validWorkIndexes").value = JSON.stringify(validIndexes);
+    document.getElementById("validWorkIndexes").value = JSON.stringify(validExperienceIndexes);
 
-    var experienceIndex = validIndexes.length;
+    var experienceIndex = validExperienceIndexes.length;
 
-    var removeButtons = document.querySelectorAll('.remove-experience-btn');
-    removeButtons.forEach(function (button) {
+    var removeExperienceButtons = document.querySelectorAll('.remove-experience-btn');
+    removeExperienceButtons.forEach(function (button) {
       button.addEventListener('click', function () {
         var experienceId = button.getAttribute('data-experience-id');
         var experienceBlock = document.getElementById('workExperienceFields-' + experienceId);
@@ -516,6 +607,173 @@
       addExperienceBtn.parentNode.insertBefore(clonedFields, addExperienceBtn);
       updateIndexes();
     });
+
+    //* Educations */
+    var validEducationIndexes = Array.from(document.querySelectorAll("[id^='educationFields-']")).map(function(field) {
+      return field.id.split("-")[1];
+    });
+
+    if (validEducationIndexes.length > 1 && validEducationIndexes.includes("0")) {
+      validEducationIndexes = validEducationIndexes.filter(index => index !== "0");
+    }
+
+    document.getElementById("validEducationIndexes").value = JSON.stringify(validEducationIndexes);
+
+    var educationIndex = validEducationIndexes.length;
+
+    var degreeSelects = document.querySelectorAll('.degree-select');
+    degreeSelects.forEach(function(degreeSelect) {
+      var degreeId = degreeSelect.getAttribute('data-degree-id');
+      var courseSelect = document.getElementById('course-' + degreeId);
+      var courseId = document.getElementById('course_id-' + degreeId);
+      var selectedDegree = degreeSelect.value;
+      var technicalCourses = JSON.parse('{{ technical_courses | escapejs }}');
+      var higherEducationCourses = JSON.parse('{{ higher_education_courses | escapejs }}');
+
+      function addOptionsToSelect(courses) {
+        courses.forEach(function(course) {
+          var option = new Option(course.name, course.id);
+          if (String(course.id) === String(courseId.value)) {
+            option.selected = true;
+          }
+          courseSelect.add(option);
+        });
+      }
+
+      if (selectedDegree === 'elementary' || selectedDegree === 'high_school') {
+        courseSelect.innerHTML = '';
+        courseSelect.disabled = true;
+        courseSelect.removeAttribute('required');
+      } else {
+        courseSelect.innerHTML = '';
+
+        var defaultOption = document.createElement('option');
+        defaultOption.text = 'Escolha um curso';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        courseSelect.add(defaultOption);
+
+        if (selectedDegree === 'technical') {
+          addOptionsToSelect(technicalCourses);
+        } else if (selectedDegree === 'bachelor' || selectedDegree === 'teaching' || selectedDegree === 'technologist' || selectedDegree === 'master' || selectedDegree === 'doctorate' || selectedDegree === 'post_doctorate') {
+          addOptionsToSelect(higherEducationCourses);
+        }
+
+        courseSelect.disabled = false;
+        courseSelect.setAttribute('required', 'required');
+      }
+    });
+
+    var removeCourseButtons = document.querySelectorAll('.remove-course-btn');
+    removeCourseButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        var courseId = button.getAttribute('data-course-id');
+        var educationBlock = document.getElementById('educationFields-' + courseId);
+        if (educationBlock) {
+          educationBlock.remove();
+        }
+        var validIndexes = Array.from(document.querySelectorAll("[id^='educationFields-']")).map(function(field) {
+          return field.id.split("-")[1];
+        });
+        document.getElementById("validEducationIndexes").value = JSON.stringify(validIndexes);
+      });
+    });
+
+    document.getElementById('addEducationBtn').addEventListener('click', function() {
+      function updateIndexes() {
+        var validIndexes = Array.from(document.querySelectorAll("[id^='educationFields-']")).map(function(field) {
+          return field.id.split("-")[1];
+        });
+        document.getElementById("validEducationIndexes").value = JSON.stringify(validIndexes);
+      }
+
+      function removeField(index) {
+        var field = document.getElementById("educationFields-" + index);
+        if (field) {
+          field.remove();
+          updateIndexes();
+        }
+      }
+
+      var clonedFields = document.querySelector("[id^='educationFields']");
+      if (!clonedFields) return;
+      clonedFields = clonedFields.cloneNode(true);
+
+      var index = ++educationIndex;
+
+      var inputs = clonedFields.querySelectorAll('input, select, textarea');
+      inputs.forEach(function(input) {
+        var name = input.getAttribute('name');
+        var id = input.getAttribute('id');
+
+        if (name) {
+          name = name.split("-")[0];
+          input.setAttribute('name', name + '-' + index);
+        }
+
+        if (id) {
+          id = id.split("-")[0];
+          input.setAttribute('id', id + '-' + index);
+        }
+
+        input.value = '';
+      });
+
+      var labels = clonedFields.querySelectorAll('label');
+      labels.forEach(function(label) {
+          var forAttribute = label.getAttribute('for');
+          if (forAttribute) {
+            forAttribute = forAttribute.split("-")[0];
+            label.setAttribute('for', forAttribute + '-' + index);
+          }
+      });
+
+      var degreeSelect = clonedFields.querySelector('.degree-select');
+      if (degreeSelect) {
+        var degreeId = degreeSelect.getAttribute('data-degree-id');
+        degreeSelect.setAttribute('data-degree-id', index);
+      }
+
+      var buttons = clonedFields.querySelectorAll('button');
+      buttons.forEach(function(button) {
+        if (button.hasAttribute('data-course-id')) {
+          button.setAttribute('data-course-id', index);
+          button.addEventListener('click', function() {
+            var indexToRemove = this.getAttribute('data-course-id');
+            removeField(indexToRemove);
+          });
+        }
+      });
+
+      console.log('education index', index)
+      var checkbox = clonedFields.querySelector("#actual_course-" + index);
+      var endDateInput = clonedFields.querySelector("#course_end_date-" + index);
+
+      console.log('checkbox', checkbox)
+      console.log('endDateInput', endDateInput)
+
+      checkbox.addEventListener('change', function () {
+        if (this.checked) {
+          endDateInput.disabled = true;
+          endDateInput.required = false;
+          endDateInput.value = '';
+        } else {
+          endDateInput.disabled = false;
+          endDateInput.required = true;
+        }
+      });
+
+      var firstChild = clonedFields.firstChild;
+      var divider = document.createElement('hr');
+      divider.classList.add('dash','mt-4');
+      clonedFields.appendChild(divider);
+
+      clonedFields.setAttribute('id', 'educationFields-' + index);
+
+      var addEducationBtn = document.getElementById('addEducationBtn');
+      addEducationBtn.parentNode.insertBefore(clonedFields, addEducationBtn);
+      updateIndexes();
+    });
   });
 
   document.getElementById("hasWorkExperience").addEventListener("change", function() {
@@ -568,62 +826,6 @@
   });
 
   {% comment %}
-  document.getElementById('addEducationBtn').addEventListener('click', function() {
-    var clonedFields = document.getElementById('educationFields').cloneNode(true);
-
-    var inputs = clonedFields.querySelectorAll('input, select, textarea');
-    var index = document.querySelectorAll('.new-education').length + 1;
-
-    inputs.forEach(function(input) {
-      var name = input.getAttribute('name');
-      var id = input.getAttribute('id');
-
-      if (name) {
-          input.setAttribute('name', name + '-' + index);
-      }
-
-      if (id) {
-          input.setAttribute('id', id + '-' + index);
-      }
-
-      input.value = '';
-    });
-
-    var labels = clonedFields.querySelectorAll('label');
-    labels.forEach(function(label) {
-        var forAttribute = label.getAttribute('for');
-        if (forAttribute) {
-            label.setAttribute('for', forAttribute + '-' + index);
-        }
-    });
-
-    var degreeSelect = clonedFields.querySelector('.degree-select');
-    if (degreeSelect) {
-      var degreeId = degreeSelect.getAttribute('data-degree-id');
-      degreeSelect.setAttribute('data-degree-id', index);
-    }
-
-    var removeBtn = document.createElement('button');
-    removeBtn.type = 'button';
-    removeBtn.classList.add('btn', 'btn-danger', 'mb-2', 'col-3');
-    removeBtn.textContent = 'Remover';
-    removeBtn.addEventListener('click', function() {
-        clonedFields.remove();
-    });
-    clonedFields.appendChild(removeBtn);
-
-    var firstChild = clonedFields.firstChild;
-    var divider = document.createElement('hr');
-    divider.classList.add('dash','mb-4');
-    clonedFields.insertBefore(divider, firstChild);
-
-    clonedFields.classList.add('new-education');
-    clonedFields.setAttribute('id', 'educationFields-' + index);
-
-    var addEducationBtn = document.getElementById('addEducationBtn');
-    addEducationBtn.parentNode.insertBefore(clonedFields, addEducationBtn);
-  });
-
   document.getElementById('addTechnicalSkillBtn').addEventListener('click', function() {
     var clonedFields = document.getElementById('technicalSkillsField').cloneNode(true);
 
@@ -723,11 +925,12 @@
     var addLanguageSkillBtn = document.getElementById('addLanguageSkillBtn');
     addLanguageSkillBtn.parentNode.insertBefore(clonedFields, addLanguageSkillBtn);
   });
+  {% endcomment %}
 
   document.addEventListener('change', function(event) {
     if (event.target.classList.contains('degree-select')) {
       var degreeId = event.target.getAttribute('data-degree-id');
-      var courseSelect = !Number(degreeId) ? document.getElementById('course') : document.getElementById('course-' + degreeId);
+      var courseSelect = document.getElementById('course-' + degreeId);
 
       var selectedDegree = event.target.value;
       var technicalCourses = JSON.parse('{{ technical_courses | escapejs }}');
@@ -763,7 +966,7 @@
         courseSelect.setAttribute('required', 'required');
       }
     }
-  }); {% endcomment %}
+  });
 
 </script>
 {% endblock %}

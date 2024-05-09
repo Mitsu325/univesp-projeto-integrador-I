@@ -56,10 +56,18 @@
 
       <div class="col-12 mb-4">
         <h2 class="card-sub-title mb-3">Educação</h2>
-        <h3 class="card-resume-sub-title">Graduação em Ciência da Computação, Universidade Z</h3>
-        <ul class="resume-info mb-2">
-          <li>Período: 2016 - 2020</li>
-        </ul>
+        {% for education in educations.all %}
+          <h3 class="card-resume-sub-title">
+            {{ education.get_degree_display }}
+            {% if education.course %} em {% endif %}
+            {{ education.course.name }}, {{ education.institution }}
+          </h3>
+          <ul class="resume-info mb-2">
+            <li>
+              Período: {{ education.start_date|date:'Y' }} - {{ education.end_date|date:'Y' }} {% if not education.end_date %}Presente{% endif %}
+            </li>
+          </ul>
+        {% endfor %}
       </div>
 
       <hr class="dash mb-4" />

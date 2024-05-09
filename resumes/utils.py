@@ -14,6 +14,7 @@ from .models import (
     LanguageSkill,
 )
 from candidates.models import Candidate
+import json
 
 
 def get_resume_context(candidate_id):
@@ -53,7 +54,9 @@ def get_language_skills(resume):
 
 
 def get_courses_by_type(course_type):
-    return Course.objects.filter(course_type=course_type).values("id", "name")
+    return json.dumps(
+        list(Course.objects.filter(course_type=course_type).values("id", "name"))
+    )
 
 
 def build_edit_context(request):
