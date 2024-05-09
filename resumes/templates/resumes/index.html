@@ -23,7 +23,13 @@
       <div class="col-lg-6 col-12 mb-4">
         <h2 class="card-sub-title mb-3">Informações pessoais</h2>
         <ul class="resume-info">
-          <li>Nome: {{ candidate.social_name|default_if_none:candidate.name }}</li>
+          <li>
+            Nome:{% if candidate.social_name %}
+              {{ candidate.social_name }}
+            {% else %}
+              {{ candidate.name }}
+            {% endif %}
+          </li>
           <li>E-mail: {{ candidate.email }}</li>
           <li>Idade: {{ age_in_years }} anos</li>
           <li>Localização: {{ resume.city.name }}, {{ resume.state.abbreviation }}</li>
@@ -34,7 +40,9 @@
       </div>
       <div class="col-lg-6 col-12 mb-4">
         <h2 class="card-sub-title mb-3">Área de interesse</h2>
-        <p>{{ resume.area_of_interest.name }}</p>
+        <p class="mb-3">{{ resume.area_of_interest.name }}</p>
+        <h2 class="card-sub-title mb-3">Grau de escolaridade</h2>
+        <p class="mb-3">{{ resume.education_level.name }}</p>
       </div>
 
       <hr class="dash mb-4" />

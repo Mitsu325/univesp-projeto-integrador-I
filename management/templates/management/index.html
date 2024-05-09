@@ -13,11 +13,20 @@
     <div class="col-lg-3 col-4">
       <h2 class="sub-title mb-4">Filtros</h2>
       <div class="form-floating mb-3">
+        <select class="form-select" id="area_of_interest" aria-label="Escolha uma área de interesse">
+          <option selected disabled>Escolha uma opção</option>
+          {% for area_of_interest in area_of_interests %}
+            <option value="{{ area_of_interest.id }}">{{ area_of_interest.name }}</option>
+          {% endfor %}
+        </select>
+        <label for="area_of_interest">Área de interesse</label>
+      </div>
+      <div class="form-floating mb-3">
         <select class="form-select" id="professionalExperience" aria-label="Escolha uma experiência profisional">
           <option selected disabled>Escolha uma opção</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          {% for job_title in job_titles %}
+            <option value="{{ job_title.id }}">{{ job_title.title }}</option>
+          {% endfor %}
         </select>
         <label for="professionalExperience">Experiência profissional</label>
       </div>
@@ -33,27 +42,27 @@
       <div class="form-floating mb-3">
         <select class="form-select" id="education" aria-label="Escolha uma formação acadêmica">
           <option selected disabled>Escolha uma opção</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          {% for education_level in education_levels %}
+            <option value="{{ education_level.id }}">{{ education_level.name }}</option>
+          {% endfor %}
         </select>
         <label for="education">Formção acadêmica</label>
       </div>
       <div class="form-floating mb-3">
         <select class="form-select" id="hability" aria-label="Escolha uma habilidade técnica">
           <option selected disabled>Escolha uma opção</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          {% for technical_skill in technical_skills %}
+            <option value="{{ technical_skill.id }}">{{ technical_skill.name }}</option>
+          {% endfor %}
         </select>
         <label for="hability">Habilidades técnicas</label>
       </div>
       <div class="form-floating mb-3">
         <select class="form-select" id="state" aria-label="Escolha um Estado">
           <option selected disabled>Escolha uma opção</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          {% for state in states %}
+            <option value="{{ state.id }}">{{ state.name }}</option>
+          {% endfor %}
         </select>
         <label for="state">Estado</label>
       </div>
@@ -70,7 +79,7 @@
     <div class="col-lg-9 col-8">
       <div class="card">
         <h1 class="card-title mb-2">Candidatos</h1>
-        <span class="sm-text mb-4">Total: 2 pessoas</span>
+        <span class="sm-text mb-4">Total: {{ resumes.count }} pessoas</span>
 
         <table>
           <thead>
@@ -81,26 +90,210 @@
               <th>Detalhes</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>João da Silva</td>
-              <td>Tecnologia</td>
-              <td>Desenvolvedor Web</td>
-              <td>
-                <button class="btn btn-cyan" onclick="showDetail(1)">Ver Mais</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Maria Souza</td>
-              <td>Marketing</td>
-              <td>Analista de Marketing</td>
-              <td>
-                <button class="btn btn-cyan" onclick="showDetail(2)">Ver Mais</button>
-              </td>
-            </tr>
+          <tbody id="resumes-container">
+            {% for resume in resumes.all %}
+              <tr>
+                <td>
+                  {% if resume.candidate.social_name %}
+                    {{ resume.candidate.social_name }}
+                  {% else %}
+                    {{ resume.candidate.name }}
+                  {% endif %}
+                </td>
+                <td>{{ resume.area_of_interest.name }}</td>
+                <td>
+                  {% if resume.work_experiences.exists %}
+                    {% with first_experience=resume.work_experiences.first %}
+                      {{ first_experience.job_title.title }}
+                    {% endwith %}
+                  {% endif %}
+                </td>
+                <td>
+                  <button class="btn btn-cyan more-info-button" data-resume-id="{{ resume.id }}">Ver Mais</button>
+                </td>
+              </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="resumeModalLabel">Detalhes do Currículo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body row"></div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    document.getElementById('area_of_interest').addEventListener('change', function () {
+      const areaOfInterestId = this.value
+      fetch(`/management/filter_resumes?area_of_interest_id=${areaOfInterestId}`)
+        .then((response) => response.json())
+        .then((res) => {
+          document.getElementById('resumes-container').innerHTML = ''
+
+          if (!res.data.length) {
+            const noResumesMessage = document.createElement('p');
+            noResumesMessage.textContent = 'Não há currículos a serem exibidos.';
+            noResumesMessage.classList.add('mt-4');
+            document.getElementById('resumes-container').appendChild(noResumesMessage);
+          } else {
+            res.data.forEach((resume) => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                  <td>
+                      ${resume.candidate_name}
+                  </td>
+                  <td>
+                      ${resume.area_of_interest}
+                  </td>
+                  <td>
+                      ${resume.job_title}
+                  </td>
+                  <td>
+                      <button class="btn btn-cyan more-info-button" data-resume-id="${resume.id}">Ver Mais</button>
+                  </td>
+              `;
+              document.getElementById('resumes-container').appendChild(row);
+            })
+          }
+
+        })
+        .catch((error) => {
+          console.error('Erro ao filtrar resumes:', error)
+        })
+    })
+
+    function formatDate(dateString) {
+      const date = new Date(dateString)
+      const year = date.getFullYear()
+      const month = ('0' + (date.getMonth() + 1)).slice(-2)
+      const day = ('0' + date.getDate()).slice(-2)
+      return `${year}-${month}-${day}`
+    }
+
+    const moreInfoButtons = document.querySelectorAll('.more-info-button')
+
+    moreInfoButtons.forEach((button) => {
+      button.addEventListener('click', function () {
+        const resumeId = button.dataset.resumeId
+
+        fetch(`/management/get_resume?resume_id=${resumeId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+            const modalContent = document.querySelector('.modal-body')
+            let html = `
+                                  <div class="col-lg-6 col-12 mb-4">
+                                    <h2 class="card-sub-title mb-3">Informações pessoais</h2>
+                                    <ul class="resume-info">
+                                      <li>Nome: ${data.candidate.name}</li>
+                                      <li>E-mail: ${data.candidate.email}</li>
+                                      <li>Idade: ${data.age_in_years} anos</li>
+                                      <li>Localização: ${data.city}, ${data.state}</li>
+                                      <li>Gênero: ${data.gender}</li>
+                                      <li>Telefone: ${data.telephone}</li>
+                                      <li>LinkedIn: ${data.linkedin}</li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-lg-6 col-12 mb-4">
+                                    <h2 class="card-sub-title mb-3">Área de interesse</h2>
+                                    <p class="mb-3">${data.area_of_interest}</p>
+                                    <h2 class="card-sub-title mb-3">Grau de escolaridade</h2>
+                                    <p class="mb-3">${data.education_level}</p>
+                                  </div>
+
+                                  <hr class="dash mb-4" />
+
+                                  <div class="col-12 mb-4">
+                                    <h2 class="card-sub-title mb-3">Experiência profissional</h2>
+                                `
+
+            data.work_experiences.forEach((workExperience) => {
+              html += `
+                                    <h3 class="card-resume-sub-title">${workExperience.job_title}, ${workExperience.company}</h3>
+                                    <ul class="resume-info mb-3">
+                                      <li>Período: ${formatDate(workExperience.start_date)} - ${formatDate(workExperience.end_date)}</li>
+                                      <li>Responsabilidades: ${workExperience.description}</li>
+                                    </ul>
+                                  `
+            })
+
+            html += `
+                                  </div>
+
+                                  <hr class="dash mb-4" />
+
+                                  <div class="col-12 mb-4">
+                                    <h2 class="card-sub-title mb-3">Educação</h2>
+                                `
+
+            data.educations.forEach((education) => {
+              html += `
+                                    <h3 class="card-resume-sub-title">${education.degree} em ${education.course}, ${education.institution}</h3>
+                                    <ul class="resume-info mb-3">
+                                      <li>Período: ${formatDate(education.start_date)} - ${formatDate(education.end_date)}</li>
+                                    </ul>
+                                  `
+            })
+
+            html += `
+                                  </div>
+
+                                  <hr class="dash mb-4" />
+
+                                  <div class="col-lg-6 col-12 mb-4">
+                                    <h2 class="card-sub-title mb-3">Habilidades técnicas</h2>
+                                    <ul class="resume-info">
+                                `
+
+            if (data.professional_skills.length === 0) {
+              html += `<li>Não possui habilidades técnicas cadastradas</li>`
+            } else {
+              data.professional_skills.forEach((skill) => {
+                html += `<li>${skill.technical_skill}</li>`
+              })
+            }
+
+            html += `
+                                    </ul>
+                                  </div>
+                                  <div class="col-lg-6 col-12 mb-4">
+                                    <h2 class="card-sub-title mb-3">Idiomas</h2>
+                                    <ul class="resume-info">
+                                `
+
+            if (data.language_skills.length === 0) {
+              html += `<li>Não possui idiomas cadastrados</li>`
+            } else {
+              data.language_skills.forEach((language) => {
+                html += `<li>${language.language} (${language.level})</li>`
+              })
+            }
+
+            html += `
+                                    </ul>
+                                  </div>
+                                `
+
+            modalContent.innerHTML = html
+
+            const resumeModal = new bootstrap.Modal(document.getElementById('resumeModal'))
+            resumeModal.show()
+          })
+          .catch((error) => {
+            console.error('Erro ao buscar currículo:', error)
+          })
+      })
+    })
+  </script>
 {% endblock %}
