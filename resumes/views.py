@@ -44,6 +44,7 @@ def index(request):
     except Resume.DoesNotExist:
         resume = Resume()
         has_resume = False
+        age_in_years = None
 
     work_experiences = WorkExperience()
     if has_resume:
